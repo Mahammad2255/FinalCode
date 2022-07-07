@@ -1,0 +1,50 @@
+﻿@model OrderVM
+<form id="orderForm" method="post">
+    <div class="billing-address mt-30">
+        <h4 class="allup-title">Billing Address</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="FullName"></label>
+                    <input asp-for="FullName" class="form-control" placeholder="Full Name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="single-form">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address"class="form-control" placeholder="Address">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="Country"></label>
+                    <input asp-for="Country"  class="form-control" placeholder="Country">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="City"></label>
+                    <input asp-for="City"class="form-control" placeholder="Town/City">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="State"></label>
+                    <input asp-for="State" class="form-control" placeholder="State">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="single-form">
+                    <label asp-for="ZipCode"></label>
+                    <input asp-for="ZipCode" class="form-control" placeholder="Zip Code">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

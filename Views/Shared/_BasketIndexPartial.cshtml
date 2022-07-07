@@ -1,0 +1,78 @@
+﻿@model List<BasketVM>
+@{
+    double subTotal = 0;
+    double tax = 0;
+    double vat = 0;
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Cart Table Area -->
+        <div class="cart-table table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="pro-thumbnail">Thumbnail</th>
+                        <th class="pro-title">Product</th>
+                        <th class="pro-price">Price</th>
+                        <th class="pro-quantity">Quantity</th>
+                        <th class="pro-subtotal">Total</th>
+                        <th class="pro-remove">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (BasketVM basketVM in Model)
+                    {
+
+                        <tr>
+                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/@basketVM.Image" alt="Product" / style="height:45px;"></a></td>
+                            <td class="pro-title"><a href="#">@basketVM.Name</a></td>
+                            <td class="pro-price"><span>$@basketVM.Price</span></td>
+                            <td class="pro-quantity">
+                                <a asp-action="update" asp-controller="basket" asp-route-id="@basketVM.ProductId" class="basketUpdate subCount "><i class="fa-solid fa-minus"></i></a>
+                                <input type="text" class="basketItemCount" value="@basketVM.Count" />
+                                <a asp-action="update" asp-controller="basket" asp-route-id="@basketVM.ProductId" class="basketUpdate addCount "><i class="fa-solid fa-plus"></i></a>
+                            </td>
+                            <td class="pro-subtotal"><span>@((basketVM.Count * basketVM.Price).ToString("0.00"))</span></td>
+                            <td class="pro-remove"><a class="deletecard" asp-controller="Basket" asp-action="DeleteCard" asp-route-id="@basketVM.ProductId"><i class="fa-solid fa-circle-minus"></i></a></td>
+                        </tr>
+
+                        subTotal += (basketVM.Price * basketVM.Count);
+                        tax += (basketVM.EcoTax * basketVM.Count);
+                        vat += basketVM.VAT;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+      
+      
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-5 ml-auto">
+        <!-- Cart Calculation Area -->
+        <div class="cart-calculator-wrapper">
+            <div class="cart-calculate-items">
+                <h3>Cart Totals</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>Sub Total</td>
+                            <td>@subTotal</td>
+                        </tr>
+                        <tr>
+                            <td>Total tax</td>
+                            <td>$@tax</td>
+                        </tr>
+                        <tr class="total">
+                            <td>Total VAT</td>
+                            <td class="total-amount">$@vat</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <a asp-action="Create" asp-controller="Order" class="btn btn-dark">Proceed Checkout</a>
+        </div>
+    </div>
+</div>

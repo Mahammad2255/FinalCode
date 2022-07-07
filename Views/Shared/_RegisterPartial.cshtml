@@ -1,0 +1,83 @@
+﻿@model RegisterVM
+
+<link href="/css/Login.css" rel="stylesheet" />
+
+    <div class="d-lg-flex half">
+        <div class="bg order-1 order-md-2" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/687px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'); "></div>
+        <div class="contents order-2 order-md-1">
+
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-7">
+                        <h3>Register to <strong>Site</strong></h3>
+                        <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+                        <form method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                            <div class="form-group first">
+                                <label for="username">Fullname</label>
+                                <input type="text" asp-for="FullName" class="form-control" placeholder="fullname" id="username">
+                            </div>
+                            <div class="form-group first">
+                                <label for="username">Email</label>
+                                <input type="text" asp-for="Email" class="form-control" placeholder="your-email@gmail.com" id="username">
+                            </div>
+                            <div class="form-group first">
+                                <label for="username">Username</label>
+                                <input type="text" asp-for="UserName" class="form-control" placeholder="Username" id="username">
+                            </div>
+                            <div class="form-group first">
+                                <label for="username">Password</label>
+                                <input type="password" asp-for="Password" class="form-control" placeholder="password" id="username">
+                            </div>
+                            <div class="form-group first">
+                                <label for="username">Confirm Password</label>
+                                <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="confirm password" id="username">
+                            </div>
+                            
+
+
+
+                            <input type="submit" value="Sing up" class="btn btn-block btn-primary">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+@*<form method="post">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="single-form">
+        <input asp-for="FullName" placeholder="Full Name">
+    </div>
+    <div class="single-form">
+        <input asp-for="Email" placeholder="Email Address">
+    </div>
+    <div class="single-form">
+        <input asp-for="UserName" placeholder="Username">
+    </div>
+    <div class="single-form">
+        <input asp-for="Password" placeholder="Password">
+    </div>
+    <div class="single-form">
+        <input asp-for="ConfirmPassword" placeholder="Confirm Password">
+    </div>
+
+    <div class="single-form">
+        <button class="main-btn main-btn-2">Register</button>
+    </div>
+</form>*@
+
+@section Script{
+    <partial name="_ValidationFormScriptPartial">
+}

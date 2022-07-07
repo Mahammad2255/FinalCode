@@ -1,0 +1,513 @@
+﻿@model HomeVM
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-bodyy d-flex">
+
+                <div class="col-lg-5">
+                    <div class="modal-img">
+                        <img src="./assets/images/product/2060b551-7562-48d3-a2f4-245eb45a1a6d_202206290911220296_ElaveNike2.jpg" alt="" style="height: 100%; width:100%;">
+                    </div>
+                </div>
+                <div class="col-lg-5 all-detail-box" style="margin-top: 50px">
+
+
+                    <h2 id="detail-h">Mega Table Lamp</h2>
+                    <div class="dis-price d-flex justify-content-between">
+                        <span id="d-price-detail">
+                            <del> 23.90</del> <span id="price-detail">$19.12</span>
+                        </span>
+
+                        <div class="icon-star">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="detail-info">
+                        <li>Salam</li>
+                        <li>Salam</li>
+                        <li>Salam</li>
+                        <li>Salam</li>
+                    </div>
+
+                    <hr />
+                    <div class=" down-detail " style="margin-bottom: 30px">
+                        <div class="quantity  justify-content-evenly">
+                            <button class="btn minus-btn disabled" type="button">-</button>
+                            <input type="number"
+                                   style="margin-top: 10px"
+                                   id="quantity"
+                                   value="1" />
+                            <button class="btn btn plus-btn" type="button">+</button>
+                        </div>
+                        <div class="col-lg-12 add-to-cart-detail" style="margin-top: 50px;">
+                            <button class="btn-cart-detail">
+
+                                <span id="add-to-cart-span">Add to cart</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer  d-flex justify-content-between" style="margin-right: 250px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="demo-cont">
+    <!-- slider start -->
+    <div class="fnc-slider example-slider">
+        <div class="fnc-slider__slides">
+            <!-- slide start -->
+            @foreach (var slider in Model.Sliders)
+            {
+
+                <div class="fnc-slide m--blend-green m--active-slide">
+                    <div class="fnc-slide__inner" style="background-image:url('assets/images/slider/@slider.Image')">
+                        <div class="fnc-slide__mask">
+                            <div class="fnc-slide__mask-inner" style="background-image:url('assets/images/slider/@slider.Image')"></div>
+                        </div>
+                        <div class="fnc-slide__content">
+                            <h2 class="fnc-slide__heading">
+                                <div class="fnc-slide__heading-line">
+                                    <span>@slider.Title</span>
+                                </div>
+
+                            </h2>
+                            <button type="button" class="fnc-slide__action-btn">
+                                Credits
+                                <span data-text="Credits">Credits</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <nav class="fnc-nav">
+            <div class="fnc-nav__bgs">
+                <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+                <div class="fnc-nav__bg m--navbg-dark"></div>
+                <div class="fnc-nav__bg m--navbg-red"></div>
+                <div class="fnc-nav__bg m--navbg-blue"></div>
+            </div>
+            <div class="fnc-nav__controls">
+                <button class="fnc-nav__control">
+                    Tablo
+                    <span class="fnc-nav__control-progress"></span>
+                </button>
+                <button class="fnc-nav__control">
+                    Tablo
+                    <span class="fnc-nav__control-progress"></span>
+                </button>
+                <button class="fnc-nav__control">
+                    Tablo
+                    <span class="fnc-nav__control-progress"></span>
+                </button>
+                <button class="fnc-nav__control">
+                    Tablo
+                    <span class="fnc-nav__control-progress"></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <!-- slider end -->
+
+</div>
+
+<section id="delivery-section">
+    <div class="container">
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/delivery-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    Free delivery</h3>
+                                    <p class="delivery-p">For all oders over $99</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/return-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    90 Days Return</h3>
+                                    <p class="delivery-p">If goods have problems</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/payment-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    Secure Payment</h3>
+                                    <p class="delivery-p">100% secure payment</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-2">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/support-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    24/7 Support</h3>
+                                    <p class="delivery-p">Dedicated support</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+
+</section>
+
+<section id="delivery-section-responsive">
+    <div class="container">
+
+        <div class="delivery-resp-box">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/delivery-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    Free delivery</h3>
+                                    <p class="delivery-p">For all oders over $99</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="delivery-resp-box">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/return-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    90 Days Return</h3>
+                                    <p class="delivery-p">If goods have problems</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="delivery-resp-box">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/payment-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    Secure Payment</h3>
+                                    <p class="delivery-p">100% secure payment</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="delivery-resp-box">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="best-price-all ">
+                        <div class="best-price-left d-flex">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/support-icon.png"
+                                 style="margin-right: 15px; height: 45px;" alt="" class="shake">
+                            <div class="best-price-right">
+                                <h5 class="delivery-h">
+                                    24/7 Support</h3>
+                                    <p class="delivery-p">Dedicated support</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+      
+
+
+
+    </div>
+    <hr>
+
+</section>
+
+<section id="all-product">
+    <div class="container">
+        <h1 style="text-align:center; margin-top:55px; margin-bottom: 55px;">Lastest product</h1>
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="product col-lg-3">
+                    <div class="product-image">
+
+                        <img src="assets/images/product/@product.MainImage
+      " alt="" style="width: 100%; cursor:pointer;" asp-controller="Product" asp-action="DetailPage" asp-route-id="@product.Id">
+
+                        <div class="quick-cart d-flex justify-content-evenly" style="text-align: end;">
+
+                            <a class="productdetail" data-toggle="modal" data-target="#quick_view" asp-controller="Product" asp-action="GetProductDetail" asp-route-id="@product.Id">
+                                <span data-toggle="tooltip"
+                                      title="Quick View"><i class="iconN fa-solid fa-magnifying-glass"></i></span>
+                            </a>
+                            <a asp-controller="product" asp-action="AddBasket" class="addbasketlink" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="fa-solid fa-basket-shopping"></i></a>
+
+                        </div>
+                    </div>
+
+                    <!-- -------------------------------------------------------------------- -->
+                    <!-- -------------------------------------------------------------------- -->
+
+
+
+                    <div class="product-category-off d-flex justify-content-between">
+                        <span id="category-span">@product.Category.Name</span>
+                        <span id="off">-20% off</span>
+                    </div>
+                    <div class="product-name">
+                        <h5>@product.Name</h5>
+                    </div>
+                    <div class="product-price-rating d-flex justify-content-between ">
+                        <div class="product-price">
+                            <span id="price">$@product.Price</span>
+                            <span id="d-price">$@product.DiscountPrice</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span id="rew">(1)</span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+
+        </div>
+        <div class="view-more">
+            <a asp-controller="Home" asp-action="Shop">View More</a>
+
+        </div>
+
+    </div>
+</section>
+<script src="./js/custom.js"></script>
+<section id="category-galery" class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 category-galery-box">
+
+                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/icon/h1-bn1.jpg
+        " style="width: 100%; height: 100%;" alt="">
+
+                <div class="category-galery-box-title">
+                    <h2>Yağlı boya</h2><br>
+                    <span>5 element</span>
+                </div>
+
+            </div>
+            <div class="col-lg-4 category-galery-box">
+                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/icon/h1-bn2.jpg" alt="" style="width: 100%; height: 100%;">
+                <div class="category-galery-box-title">
+                    <h2>Qara qələm</h2><br>
+                    <span>4 element</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-6 category-galery-box">
+                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/icon/h1-bn3.jpg
+        " style="width: 100%; height: 100%;" alt="">
+                <div class="category-galery-box-title">
+                    <h2>Sulu boya</h2><br>
+                    <span>2 element</span>
+                </div>
+            </div>
+            <div class="col-lg-6 category-galery-box">
+                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/icon/h1-bn4.jpg" alt="" style="width: 100%; height: 100%;">
+                <div class="category-galery-box-title">
+                    <h2>Portre</h2><br>
+                    <span>2 element</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sale-up">
+    <div class="sale-div">
+        <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/modules/appagebuilder/images/h1-bg.jpg" style="width: 100%; height:100%;" alt="">
+        <div class="sale-info">
+            <p class="sale-p">Last Chance</p>
+            <h2>Sale Up To 50%</h2>
+            <p class="sale-info-p">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium reiciendis,  <br>
+                dolor quis aut nisi dolorem
+
+
+            </p>
+            <a href="">SHOP NOW</a>
+        </div>
+    </div>
+</section>
+
+
+@*<div class="modal" id="quick_view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>*@
+
+<div class="modal" id="quick_view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-details-inner">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="product-large-slider mb-20">
+
+                                <div class="pro-large-img img-zoom">
+                                    <img id="mainImage" @*src="assets/images/product/@Model.MainImage"*@ alt="product thumb" />
+                                </div>
+
+                            </div>
+                            <div class="pro-nav slick-row-5">
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="product-details-des">
+                                <h3 id="name" class="pro-det-title"></h3>
+                                <div class="pro-review">
+                                    <span><a href="#">1 Review(s)</a></span>
+                                </div>
+                                <div class="price-box">
+                                    <span id="product_price" class="regular-price"></span>
+                                    <span  class="old-price"><del  id="dist_price"></del></span>
+                                </div>
+
+                                <p id="description"></p>
+                                <form method="get" id="basketform" asp-controller="Product" asp-action="AddBasket" >
+                                    <input  type="hidden" id="productId"/>
+                                    <div class="form-group">
+                                        <label>Sizes</label>
+                                     
+                                        <select class="form-control" name="sizeId" id="sizeId" onchange="trigger()">
+                                        </select>
+                                        @*<span class="text-danger" asp-validation-for="SizeIds"></span>*@
+                                    </div>
+                                    <div class="quantity-cart-box d-flex align-items-center mb-20">
+                                        <div class="quantity">
+                                            <div class="pro-qty" id="pro_qty"><input type="text" id="productcount" name="count" value="1"></div>
+                                        </div>
+                                        <button id="addbasketbtn" type="button" class="btn btn-warning">Add To Cart</button>
+                                        <input type="hidden" id="pro_count">
+                                    </div>
+                                </form>
+                                <div class="availability mb-20 d-flex" style="margin-right: 15px; margin-top:15px;">
+                                    <h5 class="cat-title">Availability:</h5>
+                                    <span>In Stock</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

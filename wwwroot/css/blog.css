@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#blog-section {
+  position: relative;
+}
+
+#blog-section .blog-box {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  -webkit-transition: all 0.75s;
+  transition: all 0.75s;
+  overflow: hidden;
+}
+
+#blog-section .blog-box:hover .blog-img img {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+}
+
+#blog-section .blog-box .blog-img img {
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-radius: 5px 5px 0px 0px;
+  -webkit-transition: -webkit-transform .5s, -webkit-filter 1.5s ease-in-out;
+  transition: -webkit-transform .5s, -webkit-filter 1.5s ease-in-out;
+  transition: transform .5s, filter 1.5s ease-in-out;
+  transition: transform .5s, filter 1.5s ease-in-out, -webkit-transform .5s, -webkit-filter 1.5s ease-in-out;
+}
+
+#blog-section .blog-box .blog-info #read-more {
+  color: #fdb768;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  
+}
+
+#blog-section .blog-box .blog-info #read-more:hover {
+  -webkit-transform: translateY(-8px);
+          transform: translateY(-8px);
+}
+
+#blog-section .blog-box .blog-info a {
+  color: #242f3d;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  text-decoration: none;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#blog-section .blog-box .blog-info a:hover {
+  color: #fdb768;
+}
+
+#blog-section .blog-box .blog-info p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #888888;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#blog-section .blog-box:hover {
+  border-color: #fdb768;
+}
+
+#blog-section .blog-img img {
+  height: auto;
+  width: 100%;
+}
+
+#blog-section h1 {
+  position: absolute;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 45px;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+
+h1 {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+h6 {
+  color: #fdb768;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+}
+
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+@media (max-width: 1100px) {
+   .blog-img-c{
+       display:none;
+   }
+}

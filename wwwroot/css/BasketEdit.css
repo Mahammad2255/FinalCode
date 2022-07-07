@@ -1,0 +1,520 @@
+﻿
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,600,700,800,900|Open+Sans:300,400,600,700,800&amp;display=swap");
+body {
+  color: #666666;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif; }
+
+a {
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s; }
+  a:hover, a:focus {
+    color: #e3a51e;
+    outline: none;
+    text-decoration: none; }
+
+p {
+  margin-bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0;
+  font-family: "Montserrat", sans-serif; }
+
+ul {
+  margin: 0;
+  padding: 0; }
+  ul li {
+    list-style: none; }
+
+strong,
+b {
+  font-weight: 700; }
+
+figure {
+  margin: 0; }
+
+img {
+  max-width: 100%;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s; }
+
+.bg-img {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s; }
+  button:active, button:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
+input:focus,
+textarea:focus {
+  outline: none; }
+
+fieldset {
+  margin-top: 30px; }
+  fieldset legend {
+    border-bottom: 1px solid #e7e7e7;
+    color: #000;
+    font-size: 24px;
+    padding-bottom: 10px;
+    text-transform: capitalize; }
+
+::-moz-selection {
+  color: #fff;
+  background: #91b2c3; }
+
+
+
+
+
+::placeholder {
+  color: #999;
+  font-size: 13px;
+  font-style: italic;
+  opacity: 1; }
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .modal-dialog {
+    max-width: 700px; } }
+
+.modal {
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -99; }
+
+
+
+/* ---- sick slider arrow style start ----*/
+
+
+/* ---- sick arrow style start ----*/
+
+
+/*--------- slick slider dot style start -------*/
+
+
+
+/*----------- header top area start -----------*/
+
+
+/*----------- header top area end -----------*/
+/*------- header main area start -------*/
+/*---------- header mini cart start ----------*/
+
+
+/*----------- header settinngs area end -----------*/
+/*---------- main menu style start ---------*/
+
+
+/*---- header style 2 start ----*/
+
+
+/*---------- main menu style end ---------*/
+/*------ sticky menu style start ------*/
+
+
+/*------ sticky menu style end ------*/
+/*------- short classes start -------*/
+
+
+/*------- short classes end -------*/
+/*----- mobile menu start -----*/
+.mobile-header .category-toggle {
+  padding: 8px 15px; }
+
+.mobile-header-top {
+  border-bottom: 1px solid #e5e5e5; }
+  .mobile-header-top .header-top-settings {
+    float: none; }
+
+.mobile-logo {
+  max-width: 140px;
+  width: 100%; }
+
+.mobile-main-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .mobile-main-header .mobile-menu-toggler {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .mobile-main-header .mobile-menu-toggler .mini-cart-wrap {
+      display: inline-block;
+      font-size: 24px;
+      line-height: 1;
+      position: relative;
+      margin-left: 30px; }
+      .mobile-main-header .mobile-menu-toggler .mini-cart-wrap a {
+        color: #333333; }
+        .mobile-main-header .mobile-menu-toggler .mini-cart-wrap a:hover {
+          color: #e3a51e; }
+      .mobile-main-header .mobile-menu-toggler .mini-cart-wrap .notification {
+        font-size: 13px;
+        color: #fff;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: 600;
+        right: -8px;
+        top: 0;
+        position: absolute;
+        background-color: #e3a51e; }
+    .mobile-main-header .mobile-menu-toggler .mobile-menu-btn {
+      margin-left: 15px; }
+      .mobile-main-header .mobile-menu-toggler .mobile-menu-btn .off-canvas-btn {
+        font-size: 30px;
+        cursor: pointer;
+        padding: 15px 15px;
+        line-height: 1;
+        padding-right: 0; }
+        .mobile-main-header .mobile-menu-toggler .mobile-menu-btn .off-canvas-btn:hover {
+          color: #e3a51e; }
+
+.mobile-navigation {
+  overflow: hidden;
+  max-height: 250px; }
+  .mobile-navigation nav {
+    height: 100%; }
+
+.mobile-menu {
+  margin-top: 30px;
+  height: 100%;
+  overflow: auto;
+  padding-right: 30px;
+  margin-right: -30px; }
+  @media only screen and (max-width: 479.98px) {
+    .mobile-menu {
+      margin-top: 15px; } }
+  .mobile-menu li > a {
+    font-size: 15px;
+    color: #333333;
+    text-transform: capitalize;
+    line-height: 18px;
+    position: relative;
+    display: inline-block;
+    padding: 10px 0; }
+    .mobile-menu li > a:hover {
+      color: #e3a51e; }
+  .mobile-menu li ul li {
+    border: none;
+    padding-left: 15px; }
+    .mobile-menu li ul li a {
+      font-size: 14px;
+      text-transform: capitalize;
+      padding: 8px 0; }
+  .mobile-menu li.menu-item-has-children {
+    display: block;
+    position: relative; }
+    .mobile-menu li.menu-item-has-children .menu-expand {
+      line-height: 50;
+      top: -5px;
+      left: 95%;
+      width: 30px;
+      position: absolute;
+      height: 50px;
+      text-align: center;
+      cursor: pointer; }
+      .mobile-menu li.menu-item-has-children .menu-expand i {
+        display: block;
+        position: relative;
+        width: 10px;
+        margin-top: 25px;
+        border-bottom: 1px solid #333333;
+        -webkit-transition: all 250ms ease-out;
+        -o-transition: all 250ms ease-out;
+        transition: all 250ms ease-out; }
+        .mobile-menu li.menu-item-has-children .menu-expand i:before {
+          top: 0;
+          width: 100%;
+          content: "";
+          display: block;
+          position: absolute;
+          -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+          border-bottom: 1px solid #333333;
+          -webkit-transition: 0.4s;
+          -o-transition: 0.4s;
+          transition: 0.4s; }
+    .mobile-menu li.menu-item-has-children.active > .menu-expand i:before {
+      -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+      transform: rotate(0); }
+
+/*----- mobile menu end -----*/
+/*------ offcanvas widget area start ------*/
+
+
+/*------ offcanvas widget area end ------*/
+
+
+/*------- mobile top bar settings start -------*/
+
+
+/*------- mobile top bar settings end -------*/
+
+/*-------- off canvas mini cart start --------*/
+.minicart-inner {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden; }
+  .minicart-inner .offcanvas-overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: url("../img/icon/cancel.png"), auto; }
+  .minicart-inner.show {
+    opacity: 1;
+    visibility: visible; }
+    .minicart-inner.show .minicart-inner-content {
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none; }
+  .minicart-inner .minicart-close {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: #e3a51e;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+    top: 0;
+    right: 375px;
+    position: absolute; }
+    .minicart-inner .minicart-close i {
+      display: block;
+      line-height: 50px;
+      -webkit-transition: 0.6s;
+      -o-transition: 0.6s;
+      transition: 0.6s; }
+    .minicart-inner .minicart-close:hover i {
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+  .minicart-inner .minicart-inner-content {
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 375px;
+    position: absolute;
+    background-color: #fff;
+    -webkit-transform: translateX(calc(100% + 50px));
+    -ms-transform: translateX(calc(100% + 50px));
+    transform: translateX(calc(100% + 50px));
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    padding: 50px 20px; }
+
+.minicart-content-box {
+  overflow: auto;
+  height: 100%;
+  padding-right: 30px;
+  margin-right: -15px; }
+
+.minicart-item-wrapper {
+  border-bottom: 1px solid #e5e5e5; }
+  .minicart-item-wrapper ul li {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5; }
+    .minicart-item-wrapper ul li:last-child {
+      border-bottom: none;
+      padding-bottom: 0; }
+
+.minicart-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.minicart-thumb {
+  max-width: 85px;
+  -ms-flex-preferred-size: 85px;
+  flex-basis: 85px;
+  border: 1px solid #dfdede; }
+
+.minicart-content {
+  padding: 0 10px;
+  max-width: calc(100% - 115px);
+  -ms-flex-preferred-size: calc(100% - 115px);
+  flex-basis: calc(100% - 115px); }
+  .minicart-content .product-name {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-bottom: 10px; }
+    .minicart-content .product-name a {
+      color: #333333; }
+      .minicart-content .product-name a:hover {
+        color: #e3a51e; }
+  .minicart-content .cart-quantity {
+    font-size: 12px;
+    color: #666666;
+    line-height: 1; }
+    .minicart-content .cart-quantity strong {
+      font-size: 16px;
+      font-weight: 400;
+      vertical-align: text-bottom; }
+  .minicart-content .cart-price {
+    color: #e3a51e;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1; }
+
+.minicart-remove {
+  max-width: 30px;
+  -ms-flex-preferred-size: 30px;
+  flex-basis: 30px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+  color: #333333; }
+  .minicart-remove:hover {
+    color: #e3a51e; }
+
+.minicart-pricing-box {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px; }
+  .minicart-pricing-box li {
+    margin-bottom: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .minicart-pricing-box li span {
+      font-size: 14px;
+      color: #333333;
+      text-transform: capitalize; }
+      .minicart-pricing-box li span strong {
+        color: #e3a51e;
+        font-weight: 500; }
+    .minicart-pricing-box li.total span {
+      font-size: 16px;
+      font-weight: 500; }
+    .minicart-pricing-box li:last-child {
+      margin-bottom: 0; }
+
+.minicart-button a {
+  color: #fff;
+  font-size: 13px;
+  display: block;
+  font-weight: 500;
+  line-height: 1;
+  padding: 17px 0;
+  background-color: #333333;
+  text-transform: uppercase;
+  border-radius: 40px;
+  text-align: center;
+  margin-bottom: 10px; }
+  .minicart-button a i {
+    padding-right: 5px; }
+  .minicart-button a:hover {
+    background-color: #e3a51e; }
+  .minicart-button a:last-child {
+    margin-bottom: 0; }
+
+/*-------- off canvas mini cart end --------*/
+/*----- section title style start -----*/
+
+
+/* ----scroll to top end ----*/
+/*-------- Custom Checkbox Style start --------*/
+
+/*-------- Custom Checkbox Style end --------*/
+/*------- Custom Radio Button Style start -------*/
+/*------- Custom Radio Button Style end -------*/
+/*------ hero slider area css start ------*/
+/*-------------------------
+02. Slider area
+--------------------------*/
+
+
+/*------- service policy area start -------*/
+
+
+/*------- service policy area end -------*/
+/*------- product item start -------*/
+
+
+/*------- product item end -------*/
+/*-------- product small item start --------*/
+
+/*-------- product small item end --------*/
+/*----- product list item start -----*/
+
+/*----- product list item end -----*/
+/*------- testimonial item start -------*/
+
+
+/*------- testimonial item end -------*/
+/*---- banner statistics start ----*/
+
+
+/*---- banner statistics end ----*/
+/*----- blog post item start -----*/
+
+
+/*----- blog post item end -----*/
+/*----- blog details area start -----*/
+
+/*----- blog details area end -----*/
+/*--- blog comment section start ---*/
+
+
+/*--- blog comment section end ---*/
+/*------ blog comment box start -----*/
+
+
+/*------ pricing filter slider start ------*/

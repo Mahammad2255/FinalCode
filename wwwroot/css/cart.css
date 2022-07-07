@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#shopping-cart .shopping-right .checkout {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #334357;
+  color: #FFFFFF;
+  border-color: #334357;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  border-radius: 4px;
+  padding: 15px 15px 10px 15px;
+  text-transform: uppercase;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  -webkit-transform: translateX(70%);
+          transform: translateX(70%);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#shopping-cart .shopping-right .checkout:hover {
+  color: orange;
+}
+
+#shopping-cart .shopping-right .line-cart #line-left {
+  color: #414141;
+  text-align: right;
+  font-size: 0.875rem;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.25em;
+  margin-top: 15px;
+}
+
+#shopping-cart .shopping-right .line-cart #line-right {
+  color: #414141;
+  float: right;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Josefin Sans", sans-serif;
+  line-height: 1.25em;
+  font-family: "Poppins", sans-serif;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#shopping-cart h2 {
+  text-transform: uppercase;
+  color: #000000;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+#shopping-cart .trash-icon-div {
+  margin-top: 25px;
+}
+
+#shopping-cart .price-cart-div p {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+#shopping-cart .shopping-left,
+#shopping-cart .shopping-right {
+  border: solid #ccc;
+  border-width: 2px;
+  font-weight: bold;
+}
+
+#shopping-cart #input-cart {
+  text-align: center;
+  margin-top: 20px;
+  height: 40px;
+  width: 80px;
+  border: 1px solid;
+  padding: 10px;
+  -webkit-box-shadow: 5px 10px 18px #888888;
+          box-shadow: 5px 10px 18px #888888;
+}
+
+#shopping-cart #input-cart:focus {
+  outline: none;
+}
+/*# sourceMappingURL=cart.css.map */

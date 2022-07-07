@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Blog>
+<link href="~/css/blog.css" rel="stylesheet" />
+<section id="blog-section" class="mt-5">
+    
+        <div class="blog-img-c">
+            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/bg-breadgrumb.jpg
+            "
+                 alt="" />
+            <h1>Lastest Blogs</h1>
+        </div>
+
+        <div class="container">
+            @foreach (var blog in Model)
+            {
+            <div class="blog-box col-lg-4">
+                <div class="blog-img">
+                    <img src="~/assets/images/blog/@blog.Image"
+                         alt="" />
+                </div>
+
+                <div class="blog-info">
+                    <a href="" style="margin-bottom: 25px;">@blog.Title</a>
+                    <br />
+                    <br />
+                    <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id" id="read-more" >Read</a>
+
+                </div>
+            </div>
+            }
+
+        </div>
+    
+</section>

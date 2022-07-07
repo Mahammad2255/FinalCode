@@ -1,0 +1,21 @@
+﻿@model RegisterVM
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!--====== Register Part Start ======-->
+
+
+    <div class="container-fluid custom-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="login-register-wrapper mt-30">
+                    <h4 class="allup-title">Creat New Account</h4>
+                    <p class="mt-10">Already have an account? <a href="login.html">Log in instead!</a></p>
+
+                    @await Html.PartialAsync("_RegisterPartial", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+

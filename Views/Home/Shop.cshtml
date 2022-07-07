@@ -1,0 +1,109 @@
+﻿@model List<Product>
+<link href="~/css/Shop.css" rel="stylesheet" />
+<section id="shop-section">
+
+    <div class="container">
+        <form method="post" action="Shop" class="d-flex justify-content-xl-between">
+            <div class="form-group col-lg-3">
+                <h2>Price Between</h2>
+                <hr />
+                <div class="row" style="text-align: center;">
+                    <input type="text" class="form-control col-lg-4" placeholder="min" name="minPrice" style="margin-right:15px; margin-left: 35px;" />
+
+                    <input type="text" class="form-control col-lg-4" placeholder="max" name="maxPrice" />
+                </div>
+            </div>
+            <div class="form-group col-lg-3">
+                <h2 style="margin-bottom: 25px;">Category</h2>
+                <hr />
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <div class="toggle-pill-dark">
+                        <input type="checkbox" placeholder="max" name="catIds" value="@category.Id" style="height: 20px; width: 20px; margin-top: 15px;" /><span style="margin-left: 15px; ">@category.Name</span>
+
+                    </div>
+
+                }
+
+
+
+                @if (ViewBag.isFiltered)
+                {
+                    <a href="/Home/Shop" type="submit" class="btn btn-danger" style="margin-top: 15px;">Clear</a>
+                }
+                <button type="submit" class="btn btn-info" role="button" style="margin-top: 15px;">Filter</button>
+            </div>
+          
+
+        </form>
+
+    </div>
+
+</section>
+
+<section id="all-product">
+    <div class="container">
+        @if (ViewBag.isFiltered)
+        {
+            <h1 style="text-align:center; margin-top:55px;">@ViewBag.SelectedCategories</h1>
+        }
+        else
+        {
+            <h1 style="text-align:center; margin-top:55px;">All Products</h1>
+        }
+
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="product col-lg-3">
+                    <div class="product-image">
+                        <img src="/assets/images/product/@product.MainImage" alt="" style="width: 100% ;">
+                        <div class="quick-cart d-flex justify-content-evenly" style="text-align: end;">
+
+                            <a class="productdetail" data-toggle="modal" data-target="#quick_view" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
+                                <span data-toggle="tooltip"
+                                      title="Quick View"><i class="iconN fa-solid fa-magnifying-glass"></i></span>
+                            </a>
+                            <a asp-controller="product" asp-action="AddBasket" class="addbasketlink" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="iconN fa-solid fa-magnifying-glass"></i></a>
+
+                        </div>
+                    </div>
+
+                    <!-- -------------------------------------------------------------------- -->
+                    <!-- -------------------------------------------------------------------- -->
+
+
+                    <div class="product-category-off d-flex justify-content-between">
+                        <span id="category-span">@product.Category.Name</span>
+                        <span id="off">-20% off</span>
+                    </div>
+                    <div class="product-name">
+                        <h5>@product.Name</h5>
+                    </div>
+                    <div class="product-price-rating d-flex justify-content-between ">
+                        <div class="product-price">
+                            <span id="price">$@product.Price</span>
+                            <span id="d-price">$@product.DiscountPrice</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span id="rew">(1)</span>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<div class="modal" id="quick_view">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

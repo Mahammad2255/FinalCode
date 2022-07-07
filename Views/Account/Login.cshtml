@@ -1,0 +1,25 @@
+﻿
+@model LoginVM
+@{ ViewData["Title"] = "Login"; }
+<link href="./css/Login.css" rel="stylesheet" />
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="container">
+    <div class="breadcrumb-area">
+        <div class="container-fluid custom-container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item active">Login</li>
+                </ol>
+            </nav>
+        </div> <!-- container -->
+    </div>
+</div>
+
+
+                    @await Html.PartialAsync("_LoginPartial")
+                   
+              
+
+

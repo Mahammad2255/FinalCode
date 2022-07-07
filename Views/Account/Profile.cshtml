@@ -1,0 +1,127 @@
+﻿@model MemberProfileVM
+@{
+    ViewData["Title"] = "Profile";
+    int orderCount = 0;
+    int orderItemCount = 0;
+
+}
+
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">My Account</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== My Account Part Start ======-->
+
+<section class="my-account-area pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl-3 col-md-4">
+                <div class="my-account-menu mt-30">
+                    <ul class="nav account-menu-list flex-column nav-pills" id="pills-tab" role="tablist">
+                        <li>
+                            <a id="pills-order-tab" data-toggle="pill" href="#pills-order" role="tab" aria-controls="pills-order" aria-selected="false"><i class="fa-solid fa-cart-shopping"></i> Order</a>
+                        </li>
+                        <li>
+                            <a id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="@((TempData["ProfileTab"] != null && TempData["ProfileTab"].ToString() == "Account"?"true":"false"))" class="@((TempData["ProfileTab"] != null && TempData["ProfileTab"].ToString() == "Account"?"active":""))"><i class="far fa-user"></i> Account Details</a>
+                        </li>
+                        <li>
+                            <a asp-action="logout"><i class="far fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-8 col-md-8">
+                <div class="tab-content my-account-tab mt-30" id="pills-tabContent">
+                    <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                        <div class="my-account-order account-wrapper">
+                            <h4 class="account-title">Orders</h4>
+                            <div class="account-table text-center mt-30 table-responsive">
+                                <table class="table table-condensed table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>FullName</th>
+                                            <th>Product Count</th>
+                                            <th>Total Price</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model.Orders)
+                                        {
+                                            orderCount++;
+                                            orderItemCount = 0;
+                                            <tr data-toggle="collapse" data-target="#demo@(orderCount)" class="accordion-toggle">
+                                                <td>@orderCount</td>
+                                                <td>@item.AppUser.FullName</td>
+                                                <td>@item.OrderItems.Count()</td>
+                                                <td>@item.OrderItems.Sum(o => o.TotalPrice)</td>
+                                                <td>@item.CreatedAt?.ToString("MMMM dd, yyyy")</td>
+                                                <td>@item.Status</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="12" class="hiddenRow">
+                                                    <div class="accordian-body collapse" id="demo@(orderCount)">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr class="info">
+                                                                    <th>#</th>
+                                                                    
+                                                                    <th>Same Product Count</th>
+                                                                    <th>Total Price</th>
+                                                                    <th>Price</th>
+                                                                    <th>Size</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var orderItem in item.OrderItems)
+                                                                {
+                                                                    orderItemCount++;
+                                                                <tr data-toggle="collapse" class="accordion-toggle">
+                                                                  
+
+                                                                   
+                                                                    <td>@orderItem.Product.Title</td>
+                                                                    <td>@orderItem.Count</td>
+                                                                    <td>@orderItem.Price</td>
+                                                                    <td>@orderItem.TotalPrice</td>
+                                                                    <td>@orderItem.Size.Name</td>
+                                                                </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade @((TempData["ProfileTab"] != null && TempData["ProfileTab"].ToString() == "Account"?"active show":""))" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
+                        <div class="my-account-details account-wrapper">
+                            <h4 class="account-title">Account Details</h4>
+
+                            <div class="account-details">
+                                @await Html.PartialAsync("_ProfileFormPartial", Model.Member)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

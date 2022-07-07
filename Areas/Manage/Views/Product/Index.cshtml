@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+    int count = (ViewBag.PageIndex - 1) * 5;
+    string tags = "";
+}
+
+<div class="col-lg-2 h3 mb-4 text-gray-800">
+    <a asp-controller="Product" asp-action="Create" asp-area="Manage" class="btn btn-primary">Create</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Image</th>
+
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discounut Price</th>
+
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Sizes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product product in Model)
+        {
+        <tr>
+
+
+            <th scope="row">@product.Id</th>
+            <th scope="row">
+                <img src="~/assets/images/product/@product.MainImage" style="width:50%" alt="Alternate Text" />
+            </th>
+            <th scope="row">@product.Name</th>
+            <th scope="row">@product.Price</th>
+            <th scope="row">@product.DiscountPrice</th>
+
+
+
+            @*<th scope="row"><img src="~/assets/images/@product.ProductImages" alt="Alternate Text" /></th>*@
+            @*<th scope="row">@product.ProductImages</th>*@
+
+
+            <th scope="row">@product.Category.Name</th>
+            <th scope="row">@product.Description</th>
+            <th scope="row">@string.Join(',', product.ProductSizes.Select(p => p.Size.Name))</th>
+
+            <td>
+                <a class="btn btn-primary" asp-action="Detail" asp-area="manage" asp-route-id="@product.Id">Detail</a>
+                <a class="btn btn-warning" asp-action="Update" asp-area="manage" asp-route-id="@product.Id">Update</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-area="manage" asp-route-id="@product.Id">Delete</a>
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="col-lg-12 d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            @if (ViewBag.PageIndex > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="index" asp-route-status="@ViewBag.Status" asp-route-page="1" aria-label="Previous">
+                        @("<<")
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-action="index" asp-route-status="@ViewBag.Status" asp-route-page="@(ViewBag.PageIndex-1)" aria-label="Previous">
+                        @("<")
+                    </a>
+                </li>
+                @if (ViewBag.PageIndex == ViewBag.PageCount && ViewBag.PageIndex > 2)
+                {
+                    <li class="page-item"><a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@(ViewBag.PageIndex-2)">@(ViewBag.PageIndex-2)</a></li>
+                }
+                <li class="page-item"><a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@(ViewBag.PageIndex-1)">@(ViewBag.PageIndex-1)</a></li>
+            }
+
+            <li class="page-item active"><a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@ViewBag.PageIndex">@ViewBag.PageIndex</a></li>
+
+            @if (ViewBag.PageIndex < ViewBag.PageCount)
+            {
+                <li class="page-item"><a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@(ViewBag.PageIndex + 1)">@(ViewBag.PageIndex + 1)</a></li>
+                @if (ViewBag.PageIndex == 1 && (ViewBag.PageIndex + 2) < ViewBag.PageCount)
+                {
+                    <li class="page-item"><a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@(ViewBag.PageIndex+2)">@(ViewBag.PageIndex+2)</a></li>
+                }
+                <li class="page-item">
+                    <a class="page-link" asp-route-status="@ViewBag.Status" asp-route-page="@(ViewBag.PageIndex + 1)" aria-label="Next">
+                        @(">")
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" asp-route-status="@ViewBag.Status" asp-action="index" asp-route-page="@ViewBag.PageCount" aria-label="Next">
+                        @(">>")
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

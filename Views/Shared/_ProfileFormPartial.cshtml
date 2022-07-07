@@ -1,0 +1,92 @@
+﻿@model MemberUpdateVM
+    <link href="~/css/Profile.css" rel="stylesheet" />
+<form asp-action="Edit" asp-controller="Account" method="post">
+    <div class="form-row">
+        <div class="col-md-12">
+            <div class="single-form">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="FullName" class="form-control" placeholder="FullName">
+                <span class="text-danger" asp-validation-for="FullName"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="Email" class="form-control" placeholder="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="UserName" class="form-control" placeholder="UserName">
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber">
+                <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="Address" class="form-control" placeholder="Address">
+                <span class="text-danger" asp-validation-for="Address"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="Country" class="form-control" placeholder="Country">
+                <span class="text-danger" asp-validation-for="Country"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="City" class="form-control" placeholder="City">
+                <span class="text-danger" asp-validation-for="City"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="State" class="form-control" placeholder="State">
+                <span class="text-danger" asp-validation-for="State"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="ZipCode" class="form-control" placeholder="ZipCode">
+                <span class="text-danger" asp-validation-for="ZipCode"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="CurrentPassword" class="form-control" placeholder="CurrentPassword">
+                <span class="text-danger" asp-validation-for="CurrentPassword"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="Password" class="form-control" placeholder="Password">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword">
+                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="single-form">
+                <button class="main-btn main-btn-2">Save Change</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@*@section Script{ 
+    <partial name="_ValidationFormScriptPartial">
+}*@

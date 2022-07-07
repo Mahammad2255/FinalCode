@@ -1,0 +1,260 @@
+﻿@inject LayoutService layoutService
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager;
+@{ Setting setting = await layoutService.GetSetting();
+                List<BasketVM> basketVMs = await layoutService.GetBasket();
+                AppUser appUser = null;
+                if (User.Identity.IsAuthenticated)
+                {
+                    appUser = userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+                }
+
+                double total = 0; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;1,300&display=swap" rel="stylesheet">
+    <link href="~/css/plugins.css" rel="stylesheet" />
+    <link href="~/css/vendor.css" rel="stylesheet" />
+    <link href="/css/BasketEdit.css" rel="stylesheet" />
+    <link href="~/css/Login.css" rel="stylesheet" />
+
+
+
+    <title>Home</title>
+</head>
+<body>
+    <section id="header-section">
+
+        <div class="container-fluid d-flex justify-content-between">
+            <div class="main-logo">
+                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/img/at-zorla-logo-1568388278.jpg"
+                     alt="" />
+            </div>
+            <div class="col-lg-4 menu-title d-flex justify-content-between">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="Shop">Shop</a>
+               
+                <a asp-controller="Blog" asp-action="Index">Blog</a>
+               
+                <a asp-controller="Contact" asp-action="Index">Contact</a>
+
+            </div>
+            <div class="col-lg-2" style="margin-top: 10px;">
+                <div class="header-configure-wrapper">
+                    <div class="header-configure-area">
+                        <ul class="nav justify-content-end">
+
+                            <li class="user-hover">
+                                <a href="#">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                                <ul class="dropdown-list">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+
+
+                        <li><a asp-action="Profile" asp-controller="Account">@User.Identity.Name</a></li>
+                                        <li><a asp-action="Logout" asp-controller="Account">Sign Out</a></li>
+ }
+                                    else
+                                    {
+                        <li><a asp-action="Login" asp-controller="Account">login</a></li>
+                                        <li><a asp-controller="account" asp-action="register">register</a></li>
+}
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" class="minicart-btn">
+                                    <i class="fa-solid fa-basket-shopping minicart-btn"></i>
+                                    <div class="notification">@basketVMs.Count</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-2 main-icons d-flex justify-content-between">
+            <i class="fa-regular fa-user"></i>
+
+            <i class="fa-solid fa-magnifying-glass user-hover">
+
+
+            </i>
+            <i class="fa-regular fa-heart"></i>
+            <i class="fa-solid fa-basket-shopping minicart-btn">
+                <div class="notification">@basketVMs.Count</div>
+            </i>-->
+            @*<a href="#" class="minicart-btn">
+                    <i class="fa-solid fa-basket-shopping"</i>
+                    <div class="notification">@basketVMs.Count</div>
+                </a>*@
+
+            <!--</div>-->
+            @*<div id="basket">
+                    <div class="basket-main d-flex justify-content-evenly">
+                        <div class="basket-img">
+                            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/133-small_default/today-is-a-good-day-framed-poster.jpg" alt="">
+                        </div>
+                        <div class="basket-info d-flex justify-content-between" style="width: 100%; margin-top: 20px;">
+                            <span id="basket-right">Footrest santiago   </span>
+
+
+                        </div>
+
+
+                        <span id="basket-x"><i class="fa-solid fa-xmark"></i></span>
+
+                    </div>
+
+
+
+                </div>*@
+
+            <!-- <div class="basket-img">
+              <img src="https://prestashopdemosite.com/theme/at_zorla/demo/133-small_default/today-is-a-good-day-framed-poster.jpg" alt="">
+            </div>
+            <div class="basket-info d-flex justify-content-between">
+             <div class="basket-div-right ">
+              <span id="basket-right">Footrest santiago</span>
+              <span><i class="fa-solid fa-xmark"></i></span>
+             </div>
+
+            </div> -->
+
+
+        </div>
+    </section>
+
+
+
+
+
+
+    <section id="header-section-responsive">
+
+        <div class="container">
+
+            <div class="row d-flex justify-content-between">
+                <div class="header-left-respo">
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <a asp-controller="Home" asp-action="Index">Shop</a>
+                        <a href="">Product</a>
+                        <a href="">Blog</a>
+
+                        <a href="">Contact</a>
+                    </div>
+                </div>
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+                <script>
+                    function openNav() {
+                        document.getElementById("mySidenav").style.width = "350px";
+                    }
+
+                    function closeNav() {
+                        document.getElementById("mySidenav").style.width = "0";
+                    }
+                </script>
+
+                <div class="logo-resp-div">
+                    <img src="https://prestashopdemosite.com/theme/at_zorla/demo/img/at-zorla-logo-1568388278.jpg" style="margin-top: 10px;" alt="">
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="header-configure-wrapper">
+                        <div class="header-configure-area justify-content-between">
+                            <ul class="nav ">
+
+                                <li class="user-hover">
+                                    <a href="#">
+                                        <i class="fa-regular fa-user"></i>
+                                    </a>
+                                    <ul class="dropdown-list">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+
+
+
+                            <li><a asp-action="Profile" asp-controller="Account">@User.Identity.Name</a></li>
+                                            <li><a asp-action="Logout" asp-controller="Account">Sign Out</a></li> }
+                                                        else
+                                                        {
+                                            <li><a asp-action="Login" asp-controller="Account">login</a></li>
+                                                            <li><a asp-controller="account" asp-action="register">register</a></li>}
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="minicart-btn">
+                                        <i class="fa-solid fa-basket-shopping minicart-btn"></i>
+                                        <div class="notification">@basketVMs.Count</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+    @RenderBody()
+
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+
+
+    <footer style="margin-top: 50px;">
+        <h2 style="text-align:center; margin-bottom: 50px;">Follow Us</h2>
+        <div class="rounded-social-buttons">
+            <a class="social-button facebook" href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a class="social-button twitter" href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a class="social-button linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a class="social-button youtube" href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a class="social-button instagram" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <hr>
+    <div class="offcanvas-minicart-wrapper">
+        <div class="minicart-inner">
+            <div class="offcanvas-overlay"></div>
+            <div class="minicart-inner-content">
+                @await Html.PartialAsync("_BasketPartial", basketVMs)
+            </div>
+        </div>
+    </div>
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
+
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/vendor.js"></script>
+    <script src="~/js/app.js"></script>
+    <script src="./js/custom.js"></script>
+    <script src="~/js/active.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

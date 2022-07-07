@@ -1,0 +1,55 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Checkout</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== Checkout Part Start ======-->
+
+<section class="checkout-area pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="checkout-form">
+                    @await Html.PartialAsync("_OrderParial",Model)
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5" style="margin-top: 55px;">
+                <div class="checkout-total-wrapper mt-30">
+                   
+                    <div class="checkout-total mt-30">
+                        <h4 class="title">Product  <span>Total</span></h4>
+                        <div class="checkout-total-sub">
+                            <p class="total-value">Sub Total</p>
+                            <p class="total-amount">€@ViewBag.Total.ToString("0.00")</p>
+                        </div>
+                        <div class="checkout-total-sub">
+                            <p class="total-value">Shipping Fee </p>
+                            <p class="total-amount">€00.00</p>
+                        </div>
+                        @*<h4 class="title mt-15">Product  <span>€@ViewBag.Total.ToString("0.00")</span></h4>*@
+                    </div>
+                </div>
+
+               
+
+                <div class="checkout-btn" style="margin-top: 25px;">
+                    <button type="submit" form="orderForm" class="btn btn-success" >Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

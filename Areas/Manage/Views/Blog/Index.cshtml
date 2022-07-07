@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Blog>
+    <div class="col-lg-2 h3 mb-4 text-gray-800">
+        <a asp-controller="Blog" asp-action="Create" asp-area="Manage" class="btn btn-primary">Create</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Photo</th>
+
+            </tr>
+        </thead>
+
+        @foreach (Blog blog in Model)
+        {
+            <tbody>
+                <tr>
+
+
+                    <th scope="row">@blog.Id</th>
+                    <td>@blog.Title</td>
+                        
+                  
+
+
+
+                    <td><img src="~/assets/images/blog/@blog.Image" alt="Alternate Text" style="width:100px;" /></td>
+
+
+                    <td>
+                        @*<a class="btn btn-primary" asp-action="Detail" asp-area="manage" asp-route-id="@blog.Id">Detail</a>*@
+                        <a class="btn btn-warning" asp-action="Update" asp-area="manage" asp-route-id="@blog.Id">Update</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-area="manage" asp-route-id="@blog.Id">Delete</a>
+
+                    </td>
+
+
+
+
+
+                </tr>
+
+
+            </tbody>
+        }
+        </table>
+

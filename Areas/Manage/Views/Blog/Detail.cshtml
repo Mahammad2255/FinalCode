@@ -1,0 +1,34 @@
+﻿
+@model Blog
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Blog Image</th>
+            <th scope="col">Title</th>
+  
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td><img src="~/assets/images/slider/@Model.Image" alt="Alternate Text" style="width:100%" /></td>
+            <td>@Model.Title</td>
+      
+
+            <td>
+                <a class="btn btn-primary" asp-action="Index">Go Back</a>
+
+
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
