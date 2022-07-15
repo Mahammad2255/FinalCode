@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Manage\Views\Dashboard\Index.cshtml" />
     <None Include="Areas\Manage\Views\Order\Index.cshtml" />
     <None Include="Areas\Manage\Views\Order\Update.cshtml" />
     <None Include="Areas\Manage\Views\Blog\Create.cshtml" />
