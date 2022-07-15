@@ -35,7 +35,7 @@
                             <a id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="@((TempData["ProfileTab"] != null && TempData["ProfileTab"].ToString() == "Account"?"true":"false"))" class="@((TempData["ProfileTab"] != null && TempData["ProfileTab"].ToString() == "Account"?"active":""))"><i class="far fa-user"></i> Account Details</a>
                         </li>
                         <li>
-                            <a asp-action="logout"><i class="far fa-sign-out-alt"></i> Logout</a>
+                            <a asp-action="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>FullName</th>
-                                            <th>Product Count</th>
+                                             <th>Product Count</th>
                                             <th>Total Price</th>
                                             <th>Date</th>
                                             <th>Status</th>
@@ -66,6 +66,7 @@
                                             <tr data-toggle="collapse" data-target="#demo@(orderCount)" class="accordion-toggle">
                                                 <td>@orderCount</td>
                                                 <td>@item.AppUser.FullName</td>
+                                               
                                                 <td>@item.OrderItems.Count()</td>
                                                 <td>@item.OrderItems.Sum(o => o.TotalPrice)</td>
                                                 <td>@item.CreatedAt?.ToString("MMMM dd, yyyy")</td>
@@ -78,10 +79,13 @@
                                                             <thead>
                                                                 <tr class="info">
                                                                     <th>#</th>
-                                                                    
+                                                                    <th>Name</th>
+                                                                    <th>Image</th>
+
                                                                     <th>Same Product Count</th>
-                                                                    <th>Total Price</th>
                                                                     <th>Price</th>
+                                                                    <th>Total Price</th>
+
                                                                     <th>Size</th>
                                                                 </tr>
                                                             </thead>
@@ -90,10 +94,12 @@
                                                                 {
                                                                     orderItemCount++;
                                                                 <tr data-toggle="collapse" class="accordion-toggle">
-                                                                  
 
-                                                                   
+
+
                                                                     <td>@orderItem.Product.Title</td>
+                                                                    <td>@orderItem.Product.Name</td>
+                                                                    <td><img src="/assets/images/product/@orderItem.Product.MainImage" style="height: 50px;" alt="Alternate Text" /></td>
                                                                     <td>@orderItem.Count</td>
                                                                     <td>@orderItem.Price</td>
                                                                     <td>@orderItem.TotalPrice</td>

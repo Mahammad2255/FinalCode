@@ -21,7 +21,7 @@ namespace FinalCode.Models
         public string State { get; set; }
         [StringLength(255)]
         public string ZipCode { get; set; }
-
+        public string EmailConfirmationToken { get; set; }
         public IEnumerable<Basket> Baskets { get; set; }
         public IEnumerable<Order> Orders { get; set; }
     }

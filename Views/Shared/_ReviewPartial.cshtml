@@ -1,0 +1,58 @@
+﻿@model List<FinalCode.ViewModels.ReviewVM>
+
+<span>Reviews</span>
+@if (Model.Count() == 0)
+{
+    <p>There are no reviews yet.</p>
+}
+else
+{
+    <h2 class="reviews-quantity">
+        @Model.Count() Comments
+    </h2>
+}
+
+@foreach (var item in Model)
+{
+        <div class="product-reviews">
+            <div class="reviews">
+                <div class="reviews">
+                    <div class="author">
+                        <span>@item.Name </span>
+                    </div>
+                    <div class="time">
+                        <span>@item.CreatedAt.ToString("MM/dd/yyyy")</span>
+                    </div>
+                    <div class="text">
+                        <p>
+                            @item.Message
+                        </p>
+                    </div>
+                    <ul>
+                        @{
+                            int yy;
+                            for (yy = 0; yy < 5; yy++)
+                            {
+                                if (yy < item.Star)
+                                {
+                                    <li style="color: #ffc107"><i class="fa-solid fa-star"></i></li>
+                                }
+                                else
+                                {
+                                    <li style="color:gray"><i class="fa-solid fa-star"></i></li>
+                                }
+                            }
+                        }
+
+                        @* <li>
+            <a href="">
+            <i class="fa-solid fa-star"></i></i>
+            </a>
+            </li> *@
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+}

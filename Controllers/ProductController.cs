@@ -31,19 +31,14 @@ namespace FinalCode.Controllers
         {
             if (id == null) return BadRequest();
 
-            Product product = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == id);
-
+            Product product = await _context.Products.Include(p => p.ProductImages).Include(p => p.ProductSizes).ThenInclude(oi => oi.Size).FirstOrDefaultAsync(p => p.Id == id);
             if (product == null) return NotFound();
 
-           // ViewBag.Sizes = await _context.Sizes.Where(b => !b.IsDeleted).ToListAsync();
 
             return Json(product);
         }
 
-        public async Task<IActionResult> GetSizes()
-        {
-            return Json(await _context.Sizes.Where(b => !b.IsDeleted).ToListAsync());
-        }
+       
 
         public async Task<IActionResult> Detail(int? id)
         {
@@ -124,7 +119,16 @@ namespace FinalCode.Controllers
                         CreatedAt = DateTime.UtcNow.AddHours(4)
                     };
 
-                    baskets.Add(basket);
+                    if (!_context.Baskets.Any(b => b.AppUserId == appUser.Id && b.ProductId == basketVM.ProductId))
+                    {
+                        baskets.Add(basket);
+                    }
+                    //else
+                    //{
+                    //    Basket basket2 = _context.Baskets.Where(b => b.AppUserId == appUser.Id && b.ProductId == id).FirstOrDefault();
+                    //    _context.Baskets.Update(basket2);
+                    //    await _context.SaveChangesAsync();
+                    //}
                 }
             }
 

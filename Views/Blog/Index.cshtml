@@ -3,18 +3,18 @@
 <section id="blog-section" class="mt-5">
     
         <div class="blog-img-c">
-            <img src="https://prestashopdemosite.com/theme/at_zorla/demo/themes/at_zorla/assets/img/bg-breadgrumb.jpg
+            <img src="https://img.freepik.com/premium-photo/woman-works-office-blue-background-concept-workspace-working-computer-freelance-banner_164357-1144.jpg?w=2000
             "
                  alt="" />
-            <h1>Lastest Blogs</h1>
+            <h1 style="color: black;">Latest Blogs</h1>
         </div>
 
-        <div class="container">
+        <div class="container d-flex" >
             @foreach (var blog in Model)
             {
-            <div class="blog-box col-lg-4">
+            <div class="blog-box col-lg-4 m-2">
                 <div class="blog-img">
-                    <img src="~/assets/images/blog/@blog.Image"
+                    <img  style="height:250px; width:100%;" src="~/assets/images/blog/@blog.Image"
                          alt="" />
                 </div>
 

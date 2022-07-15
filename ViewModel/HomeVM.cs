@@ -1,4 +1,5 @@
 ﻿using FinalCode.Models;
+using FinalCode.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,9 @@ namespace FinalCode.ViewModel
         public List<Product> Products { get; set; }
         public List<Category> Categories{ get; set; }
         public Product Product { get; set; }
+        public IEnumerable<Size> Sizes { get; set; }
+
+        public IEnumerable<Review> Reviews { get; set; }
+        public List<ReviewVM> ReviewVMs { get; set; }
     }
 }

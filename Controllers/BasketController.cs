@@ -1,6 +1,7 @@
 ﻿using FinalCode.DAL;
 using FinalCode.Models;
 using FinalCode.ViewModel.Basket;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -14,9 +15,12 @@ namespace FinalCode.Controllers
     public class BasketController : Controller
     {
         private readonly FinalCodeDbContext _context;
-        public BasketController(FinalCodeDbContext context)
+        private readonly UserManager<AppUser> _userManager;
+
+        public BasketController(FinalCodeDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
@@ -24,7 +28,7 @@ namespace FinalCode.Controllers
 
             List<BasketVM> basketVMs = null;
 
-            if (cookieBasket != null)
+            if (cookieBasket != null && cookieBasket != "")
             {
                 basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(cookieBasket);
             }
@@ -33,19 +37,22 @@ namespace FinalCode.Controllers
                 basketVMs = new List<BasketVM>();
             }
 
-            foreach (BasketVM basketVM in basketVMs)
+            if (basketVMs.Count != 0)
             {
-                Product dbProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.ProductId);
-                basketVM.Image = dbProduct.MainImage;
-            
-                basketVM.Price = dbProduct.Price;
-             
-                basketVM.Name = dbProduct.Name;
+                foreach (BasketVM basketVM in basketVMs)
+                {
+                    Product dbProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.ProductId);
+                    basketVM.Image = dbProduct.MainImage;
+
+                    basketVM.Price = dbProduct.Price;
+
+                    basketVM.Name = dbProduct.Name;
+                }
             }
 
             return View(basketVMs);
         }
-      
+
         public async Task<IActionResult> Update(int? id, int? count)
         {
             if (id == null) return BadRequest();
@@ -81,9 +88,18 @@ namespace FinalCode.Controllers
             {
                 Product dbProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.ProductId);
                 basketVM.Image = dbProduct.MainImage;
-                basketVM.Price = dbProduct.DiscountPrice > 0 ? dbProduct.DiscountPrice : dbProduct.Price;
-               
+                basketVM.Price = dbProduct.Price;
                 basketVM.Name = dbProduct.Name;
+            }
+
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+           
+            if (appUser != null)
+            {
+                Basket basket2 = _context.Baskets.Where(b => b.AppUserId == appUser.Id && b.ProductId == id).FirstOrDefault();
+                basket2.Count = (int)count;
+                _context.Baskets.Update(basket2);
+                _context.SaveChanges();
             }
 
             return PartialView("_BasketIndexPartial", basketVMs);
@@ -125,10 +141,20 @@ namespace FinalCode.Controllers
             {
                 Product dbProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.ProductId);
                 basketVM.Image = dbProduct.MainImage;
-                basketVM.Price = dbProduct.DiscountPrice > 0 ? dbProduct.DiscountPrice : dbProduct.Price;
+                basketVM.Price = dbProduct.Price;
                 basketVM.EcoTax = dbProduct.EcoTax;
                 basketVM.Name = dbProduct.Name;
             }
+
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+
+            if (appUser != null)
+            {
+                List<Basket> baskets = await _context.Baskets.Include(b => b.Product).Where(b => b.AppUserId == appUser.Id && b.ProductId == id).ToListAsync();
+                _context.Baskets.RemoveRange(baskets);
+                await _context.SaveChangesAsync();
+            }
+
 
             return PartialView("_BasketIndexPartial", basketVMs);
         }
@@ -222,8 +248,17 @@ namespace FinalCode.Controllers
                 Product dbProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.ProductId);
                 basketVM.Image = dbProduct.MainImage;
                 basketVM.Price = dbProduct.DiscountPrice > 0 ? dbProduct.DiscountPrice : dbProduct.Price;
-             
+
                 basketVM.Name = dbProduct.Name;
+            }
+
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+
+            if (appUser != null)
+            {
+                List<Basket> baskets = await _context.Baskets.Include(b => b.Product).Where(b => b.AppUserId == appUser.Id && b.ProductId == id).ToListAsync();
+                _context.Baskets.RemoveRange(baskets);
+                await _context.SaveChangesAsync();
             }
 
             return PartialView("_BasketPartial", basketVMs);

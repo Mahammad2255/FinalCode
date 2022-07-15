@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System.Net.Mail;
+using System.Net;
+using FinalCode.ViewModel;
 
 namespace FinalCode.Controllers
 {
@@ -20,13 +24,15 @@ namespace FinalCode.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly FinalCodeDbContext _context;
+        private readonly IConfiguration _config;
 
-        public AccountController(RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, FinalCodeDbContext context)
+        public AccountController(RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager, IConfiguration config, SignInManager<AppUser> signInManager, FinalCodeDbContext context)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _config = config;
         }
 
         public IActionResult Register()
@@ -47,7 +53,8 @@ namespace FinalCode.Controllers
                 UserName = registerVM.UserName,
                 IsAdmin = false
             };
-
+            string token = Guid.NewGuid().ToString();
+            appUser.EmailConfirmationToken = token;
             IdentityResult identityResult = await _userManager.CreateAsync(appUser, registerVM.Password);
 
             if (!identityResult.Succeeded)
@@ -61,11 +68,62 @@ namespace FinalCode.Controllers
 
             await _userManager.AddToRoleAsync(appUser, "Member");
 
-            await _signInManager.SignInAsync(appUser, true);
+            var link = Url.Action(nameof(VerifyEmail), "Account", new { id = appUser.Id, token }, Request.Scheme, Request.Host.ToString());
 
-            return RedirectToAction("index", "home");
+            EmailVM email = _config.GetSection("Email").Get<EmailVM>();
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(email.SenderEmail, email.SenderName);
+            mail.To.Add(appUser.Email);
+            mail.Subject = "VerifyEmail";
+            mail.Body = $"<a href=\"{link}\">Verify</a>";
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = email.Server;
+            smtp.Port = email.Port;
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential(email.SenderEmail, email.Password);
+            smtp.Send(mail);
+            //await _signInManager.SignInAsync(appUser, isPersistent:false);
+
+            return RedirectToAction(nameof(EmailVerification));
+
+
         }
 
+        public IActionResult EmailVerification() => View();
+
+
+
+        public async Task<IActionResult> VerifyEmail(string id, string token)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
+            AppUser user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            if (user.EmailConfirmationToken != token)
+            {
+                return BadRequest();
+            }
+
+            var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            IdentityResult result = await _userManager.ConfirmEmailAsync(user, emailConfirmationToken);
+
+            if (result.Succeeded)
+            {
+                string newToken = Guid.NewGuid().ToString();
+                user.EmailConfirmationToken = newToken;
+                await _userManager.UpdateAsync(user);
+                return View();
+            }
+
+
+
+            return BadRequest();
+        }
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -118,16 +176,19 @@ namespace FinalCode.Controllers
                     }
                     else
                     {
-                        Basket basket = new Basket
+                        if (!_context.Baskets.Any(b => b.AppUserId == appUser.Id && b.ProductId == basketVM.ProductId))
                         {
-                            AppUserId = appUser.Id,
-                            ProductId = basketVM.ProductId,
-                            SizeId = basketVM.SizeId,
-                            Count = basketVM.Count,
-                            CreatedAt = DateTime.UtcNow.AddHours(4)
-                        };
+                            Basket basket = new Basket
+                            {
+                                AppUserId = appUser.Id,
+                                ProductId = basketVM.ProductId,
+                                SizeId = basketVM.SizeId,
+                                Count = basketVM.Count,
+                                CreatedAt = DateTime.UtcNow.AddHours(4)
+                            };
 
-                        baskets.Add(basket);
+                            baskets.Add(basket);
+                        }
                     }
 
 

@@ -217,17 +217,17 @@ namespace FinalCode.Areas.Manage.Controllers
            
             if (product.MainImageFile != null)
             {
-                if (!product.MainImageFile.CheckFileContentType("image/jpeg"))
-                {
-                    ModelState.AddModelError("MainImageFile", "Secilen Seklin Novu Uygun");
-                    return View();
-                }
+                //if (!product.MainImageFile.CheckFileContentType("image/jpeg"))
+                //{
+                //    ModelState.AddModelError("MainImageFile", "Secilen Seklin Novu Uygun");
+                //    return View();
+                //}
 
-                if (!product.MainImageFile.CheckFileSize(300))
-                {
-                    ModelState.AddModelError("MainImageFile", "Secilen Seklin Olcusu Maksimum 300 Kb Ola Biler");
-                    return View();
-                }
+                //if (!product.MainImageFile.CheckFileSize(300))
+                //{
+                //    ModelState.AddModelError("MainImageFile", "Secilen Seklin Olcusu Maksimum 300 Kb Ola Biler");
+                //    return View();
+                //}
                 Helper.DeleteFile(_env, dbProduct.MainImage, "assets", "images", "product");
 
                 dbProduct.MainImage = product.MainImageFile.CreateFile(_env, "assets", "images", "product");

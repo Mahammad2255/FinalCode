@@ -61,7 +61,7 @@
                                 @foreach (var size in ViewBag.Sizes)
                                 {
                                     <option value="@size.Id.ToString()">@size.Name</option>
-}
+                                }
                             </select>
                             <span class="text-danger" asp-validation-for="SizeIds"></span>
                         </div>
@@ -91,7 +91,6 @@
     <!-- product details inner end -->
 </div>
 
-
 @section Scripts{
 
     <script>
@@ -105,5 +104,6 @@
         //    // sizeId = size;
         //    console.log(document.getElementById('sizeId').value;
         //}
+
     </script>
 }

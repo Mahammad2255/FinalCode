@@ -46,6 +46,9 @@ namespace FinalCode.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
+                    b.Property<string>("EmailConfirmationToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
@@ -497,8 +500,7 @@ namespace FinalCode.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -512,8 +514,7 @@ namespace FinalCode.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Rate")
-                        .HasColumnType("int")
-                        .HasMaxLength(5);
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

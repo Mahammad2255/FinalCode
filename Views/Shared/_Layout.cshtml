@@ -2,14 +2,14 @@
 @using Microsoft.AspNetCore.Identity;
 @inject UserManager<AppUser> userManager;
 @{ Setting setting = await layoutService.GetSetting();
-                List<BasketVM> basketVMs = await layoutService.GetBasket();
-                AppUser appUser = null;
-                if (User.Identity.IsAuthenticated)
-                {
-                    appUser = userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name && !u.IsAdmin);
-                }
+    List<BasketVM> basketVMs = await layoutService.GetBasket();
+    AppUser appUser = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        appUser = userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name && !u.IsAdmin);
+    }
 
-                double total = 0; }
+    double total = 0; }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,7 @@
     <link href="~/css/index.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;1,300&display=swap" rel="stylesheet">
@@ -30,22 +31,22 @@
 
 
 
-    <title>Home</title>
+    <title>Tablo.az</title>
 </head>
 <body>
     <section id="header-section">
 
         <div class="container-fluid d-flex justify-content-between">
             <div class="main-logo">
-                <img src="https://prestashopdemosite.com/theme/at_zorla/demo/img/at-zorla-logo-1568388278.jpg"
+                <img src="https://investors.outsetmedical.com/system/files-encrypted/nasdaq_kms/inline-images/tablo-logo-gray-dk-orange_1.png" style="height: 50px; width: 150px;";
                      alt="" />
             </div>
             <div class="col-lg-4 menu-title d-flex justify-content-between">
                 <a asp-controller="Home" asp-action="Index">Home</a>
                 <a asp-controller="Home" asp-action="Shop">Shop</a>
-               
+
                 <a asp-controller="Blog" asp-action="Index">Blog</a>
-               
+
                 <a asp-controller="Contact" asp-action="Index">Contact</a>
 
             </div>
@@ -151,9 +152,9 @@
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                         <a asp-controller="Home" asp-action="Index">Home</a>
-                        <a asp-controller="Home" asp-action="Index">Shop</a>
-                        <a href="">Product</a>
-                        <a href="">Blog</a>
+                        <a asp-controller="Home" asp-action="Shop">Shop</a>
+                        <a asp-controller="Contact" asp-action="Index">Contact</a>
+                        <a asp-controller="Blog" asp-action="Index">Blog</a>
 
                         <a href="">Contact</a>
                     </div>
@@ -219,7 +220,7 @@
 
     @RenderBody()
 
-    
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 
 
@@ -249,12 +250,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
 
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="~/js/plugins.js"></script>
     <script src="~/js/vendor.js"></script>
     <script src="~/js/app.js"></script>
     <script src="./js/custom.js"></script>
     <script src="~/js/active.js"></script>
     @RenderSection("Scripts", required: false)
+    @RenderSection("Script", required: false)
 </body>
 </html>
 

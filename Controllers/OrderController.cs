@@ -38,9 +38,19 @@ namespace FinalCode.Controllers
 
             foreach (Basket item in baskets)
             {
-                total = total + (item.Count * (item.Product.Price));
-            }
+                //if(baskets.Count == 1)
+                //{
+                //    total = total + (item.Count * item.Product.Price);
+                //}
+                //else
+                //{
+                //    total = total + item.Product.Price;
+                //}
 
+                total = total + (item.Count * item.Product.Price);
+
+            }
+            
             ViewBag.Total = total;
 
             OrderVM orderVM = new OrderVM
@@ -59,12 +69,13 @@ namespace FinalCode.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(OrderVM orderVM)
+        public async Task<IActionResult> Create(OrderVM orderVM, double orderTotal = 0)
         {
-            ViewBag.Total = 0;
+            ViewBag.Total = orderTotal;
 
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Incorect Size Id");
                 return View();
             }
 
@@ -81,7 +92,14 @@ namespace FinalCode.Controllers
 
             foreach (Basket item in baskets)
             {
-                total = total + (item.Count * (item.Product.Price));
+                if (baskets.Count == 1)
+                {
+                    total = total + (item.Count * item.Product.Price);
+                }
+                else
+                {
+                    total = total + item.Product.Price;
+                }
 
                 OrderItem orderItem = new OrderItem
                 {

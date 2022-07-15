@@ -298,8 +298,7 @@ input::-webkit-inner-spin-button {
   padding: 1rem;
   background: #fff;
   padding: 20px;
-  -webkit-box-shadow: -10px 10px 0px 0px black;
-          box-shadow: -10px 10px 0px 0px black;
+
 }
 
 .tabs input[type="radio"] {
@@ -326,4 +325,176 @@ input::-webkit-inner-spin-button {
     margin-left: 50px;
   }
 }
-/*# sourceMappingURL=product-detail.css.map */
+
+
+#main-content #detail-breadcrumb a {
+    color: #9b9b9b;
+}
+
+    #main-content #detail-breadcrumb a:hover {
+        color: orange;
+    }
+
+#main-content #detail-breadcrumb i {
+    color: #9b9b9b;
+    font-size: 10px;
+}
+
+
+
+#main-content #reviews h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 26px;
+    text-transform: uppercase;
+    border: 0;
+    position: relative;
+    font-weight: 600;
+    margin-top: 35px;
+}
+
+
+#main-content #reviews .reviews {
+
+    padding: 0 15px;
+}
+
+    #main-content #reviews .reviews span {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+#main-content #reviews .write {
+    text-align: end;
+}
+
+    #main-content #reviews .write span {
+        font-weight: 500;
+        color: #000;
+        font-size: 24px;
+        padding-bottom: 25px;
+        display: inline-block;
+        text-transform: capitalize;
+        font-family: "Poppins";
+    }
+
+    #main-content #reviews .write p {
+        font-size: 13px;
+        font-family: "Poppins";
+        color: #a3a3a3;
+    }
+
+    #main-content #reviews .write .rate {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: end;
+    }
+
+        #main-content #reviews .write .rate label {
+            margin-right: 15px;
+            color: #a3a3a3;
+            font-size: 16px;
+        }
+
+        #main-content #reviews .write .rate ul li {
+            margin-right: 6px;
+        }
+
+            #main-content #reviews .write .rate ul li i {
+                color: gray;
+            }
+
+        #main-content #reviews .write .rate ul .selected i {
+            color: #ffc107;
+        }
+
+        #main-content #reviews .write .rate ul .starred i {
+            color: #ffc107;
+        }
+
+    #main-content #reviews .write form {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: end;
+    }
+
+        #main-content #reviews .write form .review {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+            #main-content #reviews .write form .review input {
+                margin-top: 25px;
+                width: 87%;
+                height: 50px;
+                border: 2px solid orange;
+                outline: none;
+                position: relative;
+            }
+
+                #main-content #reviews .write form .review input::-webkit-input-placeholder {
+                    color: #a3a3a3;
+                    top: 0;
+                    position: absolute;
+                    padding: 10px 10px;
+                }
+
+        #main-content #reviews .write form .name {
+            width: 55%;
+            border: 2px solid orange;
+            outline: none;
+            height: 50px;
+        }
+
+        #main-content #reviews .write form .email {
+            width: 29%;
+            margin-left: 15px;
+            border: 2px solid orange;
+            outline: none;
+            height: 50px;
+        }
+
+        #main-content #reviews .write form input::-webkit-input-placeholder {
+            color: #a3a3a3;
+            top: 0;
+            position: absolute;
+        }
+
+        #main-content #reviews .write form button {
+            margin-right: 110px;
+            margin-top: 15px;
+            width: 40%;
+            background: orange;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 0 50px;
+            height: 50px;
+            color: #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: none;
+            outline: none;
+        }
+
+li {
+    display: inline-block;
+}
+
+#main-content #blog-main .blog-detail .blog-comments .comment .texxt p {
+    color: #a3a3a3;
+    font-size: 17px;
+}
+
+.qtybtn {
+    cursor: pointer !important;
+    font-size: 20px !important;
+    margin: 10px;
+}

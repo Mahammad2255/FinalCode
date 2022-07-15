@@ -2,9 +2,11 @@
 using FinalCode.DAL;
 using FinalCode.Models;
 using FinalCode.ViewModel;
+using FinalCode.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,6 +31,7 @@ namespace FinalCode.Controllers
 
                 Products = _context.Products.OrderByDescending(p => p.Id).Take(4).ToList(),
                 Categories = _context.Categories.ToList()
+                //Product = _context.Products.Include(r=> r.Reviews).FirstOrDefault()
             };
             return View(homeVM);
         }
@@ -122,5 +125,8 @@ namespace FinalCode.Controllers
 
             return View(products);
     }
-}
+
+
+
+    }
 }

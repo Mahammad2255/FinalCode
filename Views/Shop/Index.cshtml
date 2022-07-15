@@ -1,0 +1,257 @@
+﻿@model HomeVM
+@{ ViewData["Title"] = "Index";
+                //string currente = DateTime.UtcNow.AddDays(0).ToString("dd");
+                //int time = Convert.ToInt32(currentime);
+                DateTime currentime = DateTime.Now; }
+
+<section id="main-content">
+    <section id="widget">
+        <div class="title">
+            <h1>Shop</h1>
+        </div>
+        <div class="shop-breadcrumb">
+            <a href="">Home</a>
+            <i class="fa-solid fa-angle-right"></i>
+            <a href="">Shop</a>
+        </div>
+    </section>
+    <section id="shop-main">
+        <div class="containerr">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="shop-left">
+                        <div class="categories">
+                            <h2>Categories</h2>
+                            <ul>
+                                <li class="categoryHolder activeCategory" data-id="0"><a href="">All</a></li>
+                                @foreach (var item in Model.Categories)
+                                {
+                    <li class="categoryHolder" data-id="@item.Id"><a href="">@item.Name<span> - @item.Products.Where(p => !p.IsDeleted).Count()</span></a></li>}
+                            </ul>
+                        </div>
+                        <div class="shop-price">
+                            <h2>Price</h2>
+                            <div class="wrapper">
+                                <fieldset class="filter-price">
+                                   
+                                    <div class="price-wrap">
+                                        <span class="price-title">Range:</span>
+                                        <div class="price-wrap-1">
+                                            <input id="one">
+                                            <label for="one">$</label>
+                                        </div>
+                                        <div class="price-wrap_line">-</div>
+                                        <div class="price-wrap-2">
+                                            <input id="two">
+                                            <label for="two">$</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        @*<div class="shop-color">
+                                                    <h2>Color</h2>
+                                                    <ul>
+                                                        @foreach (var item in Model.Colors)
+                                                        {
+                                                        <li>
+                                                            <span class="color" style="background-color:#337fdd;"></span>
+                                                            <p>@item.Name</p>
+                                                        </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="size">
+                                                    <h2>Size</h2>
+                                                    <ul>
+                                                        @foreach (var item in Model.Sizes)
+                            {
+                                                        <li><a href="">@item.Name</a></li>
+                            }
+                                                    </ul>
+                                                </div>*@
+                       
+                        <div class="feature-product">
+                            <h2>Feature product</h2>
+                            <div class="products">
+                                <ul>
+                                    @foreach (var item in Model.Products.OrderByDescending(p => p.Id).Take(3))
+                                    {
+                        <li>
+                            <div class="left">
+                                <img src="/assets/img/products/@item.MainImage" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="reviews">(0) Reviews</span>
+                                </div>
+                                <div class="title"><a href="">Animal Adventure 2</a></div>
+                                <div class="price"><del>$@item.Price</del><span>$@item.DiscountPrice</span></div>
+                            </div>
+                        </li>}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="shop-right">
+                        <div class="filter d-flex justify-content-between">
+                            <div class="sort-count d-flex">
+                                <label for="">Show</label>
+                                <ul>
+                                    <li class="filter active"><a>15</a></li>
+                                    <li class="filter"><a>30</a></li>
+                                    <li class="filter"><a>45</a></li>
+                                </ul>
+                            </div>
+                            <div class="ordering d-flex">
+                                <span>Default <i class="fa-solid fa-caret-down"></i></span>
+                                <ul class="filter-dropdown">
+                                    <li class="filterDropdownValue" data-id="descending">
+                                        <a href="">Price High to Low</a>
+                                    </li>
+                                    <li class="filterDropdownValue" data-id="ascending">
+                                        <a href="">Price Low To High</a>
+                                    </li>
+                                    <li class="filterDropdownValue" data-id="latest">
+                                        <a href="">Latest</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="products shopProductRowHolder">
+                            <div class="row shopProductRow">
+                                @foreach (var item in Model.Products)
+                                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product">
+                            <div class="product-badge">
+                                @*@if (int.Parse(currentime.Subtract(item.CreatedAt.Value).ToString())<10)
+                                    {
+                                        <span>Hot</span>
+                                    }*@
+
+                            </div>
+                            <div class="top">
+                                <div class="image">
+                                    <a href="">
+                                        <img class="img-1"
+                                             src="/assets/img/products/@item.MainImage" alt="" />
+                                    </a>
+                                   
+                                </div>
+                                <div class="product-quickview">
+                                    <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                                </div>
+                                <div class="product-btns">
+                                    <div class="cart">
+                                        <a href=""><i class="fa-solid fa-basket-shopping"></i></a>
+                                    </div>
+                                    <div class="wishlist">
+                                        <a href=""><i class="fa-regular fa-heart"></i></a>
+                                    </div>
+                                    <div class="compare">
+                                        <a href=""><i class="fa-regular fa-code-compare"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="rating d-flex">
+                                    <div class="stars">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span>( 2 reviews )</span>
+                                </div>
+                                <h3 class="product-title">
+                                    <a asp-route-id="@item.Id" asp-action="ProductDetail" asp-controller="Shop">@item.Name</a>
+                                </h3>
+                                <div class="price">
+                                    <span>
+                                        $@item.Price
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+@section Script{
+    <script>var filterQuery = {
+            category:$(".activeCategory").data("id"),
+            minPrice:$(".lowerRange").val(),
+            maxPrice:$(".upperRange").val(),
+            brand:0,
+            type : "standart"
+        }
+        $(".categoryHolder").click((e)=>{
+            e.preventDefault()
+            $(".activeCategory").removeClass("activeCategory")
+            $(e.currentTarget).addClass("activeCategory")
+            filterQuery.category = Number($(e.currentTarget).data("id"))
+            sendQuery()
+            console.log(filterQuery)
+        })
+
+        $(".lowerRange").change((e)=>{
+            filterQuery.minPrice = Number($(e.currentTarget).val())
+            sendQuery()
+        })
+        $(".upperRange").change((e)=>{
+            filterQuery.maxPrice = Number($(e.currentTarget).val())
+            sendQuery()
+
+        console.log(filterQuery)
+        })
+        $(".brandHolder").click((e)=>{
+            if($(e.currentTarget).hasClass("activeBrand")){
+                console.log("salam")
+                $(e.currentTarget).removeClass("activeBrand")
+
+                filterQuery.brand = Number(0)
+            }
+            else{
+                $(".activeBrand").removeClass("activeBrand")
+                $(e.currentTarget).addClass("activeBrand")
+
+                filterQuery.brand = Number($(".activeBrand").data("id"))
+            }
+            console.log($(".activeBrand").data("id"))
+
+            console.log(filterQuery)
+            sendQuery()
+        })
+
+         $(".filterDropdownValue").click((e)=>{
+            e.preventDefault()
+            filterQuery.type = $(e.currentTarget).data("id")
+            sendQuery()
+        })
+
+        const sendQuery = ()=>{
+            $.ajax({
+			url: "/Shop/Filter?filterQuery="+JSON.stringify(filterQuery),
+			type: "POST",
+			success: function (result) {
+                $(".shopProductRowHolder").empty();
+                $(".shopProductRowHolder").append(result);
+			}
+		});
+        }</script>
+}
+

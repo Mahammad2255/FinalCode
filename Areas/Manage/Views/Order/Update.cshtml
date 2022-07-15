@@ -19,21 +19,20 @@
                             <th>Price</th>
                             <th>Discount Price</th>
                             <th>Ordered Count</th>
-                            <th>Stocke Count</th>
                             <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.OrderItems)
                         {
-                            <tr>
-                                <td>@item.Product.Title</td>
-                                <td>@item.Product.Price</td>
-                                <td>@item.Product.DiscountPrice</td>
-                                <td>@item.Count</td>
-                                <td>@item.Product.Count</td>
-                                <td>@(item.Count * (item.Product.DiscountPrice > 0 ? item.Product.DiscountPrice : item.Product.Price))</td>
-                            </tr>
+                        <tr>
+                            <td>@item.Product.Name</td>
+                          
+                            <td>@item.Product.Price</td>
+                            <td>@item.Product.DiscountPrice</td>
+                            <td>@item.Count</td>
+                            <td>@(item.Count * (item.Product.Price))</td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -67,7 +66,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-10 m-4">
             <a class="btn btn-primary" asp-action="Index">Go To List</a>
         </div>
     </div>

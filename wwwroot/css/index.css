@@ -1074,6 +1074,7 @@
 
 #all-product .product .product-image .iconN {
   cursor: pointer;
+  color:orange;
 }
 
 #all-product .product:hover .quick-cart {
@@ -1220,7 +1221,7 @@ h2 {
   margin-bottom: 20px;
   font-family: "Josefin Sans", sans-serif;
   font-size: 30px;
-  color: #242f3d;
+  color: white;
   line-height: 1.25em;
   cursor: pointer;
   -webkit-transition: 0.4s;
@@ -1235,7 +1236,7 @@ h2 {
   position: absolute;
   top: 70%;
   font-size: 14px;
-  color: #242f3d;
+ color:white;
   direction: ltr;
   font-family: "Poppins", sans-serif;
   line-height: 1.25em;
@@ -1264,7 +1265,8 @@ h2 {
 }
 
 #sale-up .sale-div .sale-info a {
-  position: relative;
+    top: 85%;
+  position: absolute;
   padding-bottom: 5px;
   display: inline-block;
   text-transform: uppercase;
@@ -1273,6 +1275,7 @@ h2 {
   letter-spacing: 1.4px;
   font-weight: 600;
   text-decoration: none;
+  margin-bottom: 25px;
 }
 
 #sale-up .sale-div .sale-info a::after {

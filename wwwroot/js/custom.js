@@ -52,21 +52,17 @@ $(document).ready(function () {
             document.getElementById('description').innerHTML = res.description;
             document.getElementById('product_price').innerHTML = '$' + res.price;
             document.getElementById('dist_price').innerHTML = '$' + res.discountPrice;
-        })
 
-        $.ajax({
-            method: 'GET',
-            url: '/Product/Getsizes'
-        }).then(function (res) {
-            for (let i = 0; i < res.length; i++) {
+            for (let i = 0; i < res.productSizes.length; i++) {
                 var added = document.createElement('option');
                 var sizeSelect = $('#sizeId');
-                added.value = res[i].id;
-                added.innerHTML = res[i].name;
+                added.value = res.productSizes[i].size.id;
+                added.innerHTML = res.productSizes[i].size.name;
                 sizeSelect.append(added);
             }
         })
 
+       
         $("#quick_view").modal("show")
         $('.btn-close').on('click', function (e) {
             e.preventDefault();
@@ -128,9 +124,30 @@ $(document).ready(function () {
         fetch(url).then(response => {
             return response.text();
         }).then(data => {
-            $(".minicart-inner-content").html(data)
+            $(".minicart-inner-content").html(data);
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "1000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            toastr.success("Əlavə olundu!");
 
         })
+        Swal.fire("Our First Alert", "With some body text and success icon!", "success");
     })
 
     $(document).on("click", ".addbasketlink", function (e) {
@@ -147,7 +164,7 @@ $(document).ready(function () {
             $(".minicart-inner-content").html(data);
         })
     })
-
+    
     $(document).on("click", ".basketUpdate", function (e) {
         e.preventDefault();
         let url = $(this).attr("href");

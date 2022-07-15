@@ -1,109 +1,319 @@
 ﻿@model List<Product>
-<link href="~/css/Shop.css" rel="stylesheet" />
-<section id="shop-section">
 
-    <div class="container">
-        <form method="post" action="Shop" class="d-flex justify-content-xl-between">
-            <div class="form-group col-lg-3">
-                <h2>Price Between</h2>
-                <hr />
-                <div class="row" style="text-align: center;">
-                    <input type="text" class="form-control col-lg-4" placeholder="min" name="minPrice" style="margin-right:15px; margin-left: 35px;" />
+<section id="shop-section" class="d-flex justify-content-between">
 
-                    <input type="text" class="form-control col-lg-4" placeholder="max" name="maxPrice" />
+    <div class="container d-flex">
+        <form method="post" action="Shop">
+            <div class="left-shopp">
+                <div class="form-group col-lg-6 ">
+                    <h2>Price Between</h2>
+                    <hr />
+                    <div class="row" style="text-align: center;">
+                        <input type="text" class="form-control col-lg-4 col-md-5" placeholder="min" name="minPrice" style="margin-right:15px; margin-left: 35px;" />
+
+                        <input type="text" class="form-control col-lg-4 col-md-5" placeholder="max" name="maxPrice" />
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-md-12">
+                    <h2 style="margin-bottom: 25px;">Category</h2>
+                    <hr />
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <div class="toggle-pill-dark">
+                            <input type="checkbox" placeholder="max" name="catIds" value="@category.Id" style="height: 20px; width: 20px; margin-top: 15px;" /><span style="margin-left: 15px; ">@category.Name</span>
+
+                        </div>
+
+                    }
+
+
+
+                    @if (ViewBag.isFiltered)
+                    {
+                        <a href="/Home/Shop" type="submit" class="btn btn-danger" style="margin-top: 15px;">Clear</a>
+                    }
+                    <button type="submit" class="btn btn-info" role="button" style="margin-top: 15px;">Filter</button>
                 </div>
             </div>
-            <div class="form-group col-lg-3">
-                <h2 style="margin-bottom: 25px;">Category</h2>
-                <hr />
-                @foreach (var category in ViewBag.Categories)
-                {
-                    <div class="toggle-pill-dark">
-                        <input type="checkbox" placeholder="max" name="catIds" value="@category.Id" style="height: 20px; width: 20px; margin-top: 15px;" /><span style="margin-left: 15px; ">@category.Name</span>
 
-                    </div>
-
-                }
-
-
-
-                @if (ViewBag.isFiltered)
-                {
-                    <a href="/Home/Shop" type="submit" class="btn btn-danger" style="margin-top: 15px;">Clear</a>
-                }
-                <button type="submit" class="btn btn-info" role="button" style="margin-top: 15px;">Filter</button>
-            </div>
-          
 
         </form>
+        <section id="all-product">
+            <div class="container">
+                @if (ViewBag.isFiltered)
+                {
+                    <h1 style="text-align:center; margin-top:55px;">@ViewBag.SelectedCategories</h1>
+                }
+                else
+                {
+                    <h1 style="text-align: center; margin-top: 55px; font-family: Josefin Sans; ">All Products</h1>
+                }
 
-    </div>
+                <div class="row">
+                    @foreach (var product in Model)
+                    {
+                      
+                        <div class="product col-lg-4 mt-5">
+                            <div class="product-image">
+                                <img src="/assets/images/product/@product.MainImage" alt="" style="height:250px; width: 100%;">
+                                <div class="quick-cart d-flex justify-content-evenly" style="text-align: end;">
 
-</section>
+                                    <a class="productdetail" data-toggle="modal" data-target="#quick_view" asp-controller="Product" asp-action="GetProductDetail" asp-route-id="@product.Id">
+                                        <span data-toggle="tooltip"
+                                              title="Quick View"><i class="iconN fa-solid fa-magnifying-glass"></i></span>
+                                    </a>
+                                    @*<a asp-action="ProductDetail" asp-controller="Shop" asp-route-id="@item.Id"><img class="img-1" src="/assets/img/products/@item.MainImage" alt="" /></a>*@
+                                    <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="iconN fa-solid fa-info"></i></a>
 
-<section id="all-product">
-    <div class="container">
-        @if (ViewBag.isFiltered)
-        {
-            <h1 style="text-align:center; margin-top:55px;">@ViewBag.SelectedCategories</h1>
-        }
-        else
-        {
-            <h1 style="text-align:center; margin-top:55px;">All Products</h1>
-        }
+                                </div>
+                            </div>
 
-        <div class="row">
-            @foreach (var product in Model)
-            {
-                <div class="product col-lg-3">
-                    <div class="product-image">
-                        <img src="/assets/images/product/@product.MainImage" alt="" style="width: 100% ;">
-                        <div class="quick-cart d-flex justify-content-evenly" style="text-align: end;">
 
-                            <a class="productdetail" data-toggle="modal" data-target="#quick_view" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
-                                <span data-toggle="tooltip"
-                                      title="Quick View"><i class="iconN fa-solid fa-magnifying-glass"></i></span>
-                            </a>
-                            <a asp-controller="product" asp-action="AddBasket" class="addbasketlink" asp-route-id="@product.Id" data-toggle="tooltip" title="Add To Cart"><i class="iconN fa-solid fa-magnifying-glass"></i></a>
 
+                            <div class="product-category-off d-flex justify-content-between">
+                                <span id="category-span">@product.Category.Name</span>
+                                <span id="off">-20% off</span>
+                            </div>
+                            <div class="product-name">
+                                <h5>@product.Name</h5>
+                            </div>
+                            <div class="product-price-rating d-flex justify-content-between ">
+                                <div class="product-price">
+                                    <span id="price">$@product.Price</span>
+                                    <span id="d-price">$@product.DiscountPrice</span>
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <span id="rew">(1)</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }
 
-                    <!-- -------------------------------------------------------------------- -->
-                    <!-- -------------------------------------------------------------------- -->
-
-
-                    <div class="product-category-off d-flex justify-content-between">
-                        <span id="category-span">@product.Category.Name</span>
-                        <span id="off">-20% off</span>
-                    </div>
-                    <div class="product-name">
-                        <h5>@product.Name</h5>
-                    </div>
-                    <div class="product-price-rating d-flex justify-content-between ">
-                        <div class="product-price">
-                            <span id="price">$@product.Price</span>
-                            <span id="d-price">$@product.DiscountPrice</span>
-                        </div>
-                        <div class="rating">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <span id="rew">(1)</span>
-                        </div>
-                    </div>
                 </div>
-            }
-
-        </div>
+            </div>
+        </section>
     </div>
+
 </section>
+
 <div class="modal" id="quick_view">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="product-details-inner">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="product-large-slider mb-20">
+
+                                <div class="pro-large-img img-zoom" style="margin-top: 40px;">
+                                    <img id="mainImage"  @*src="assets/images/product/@Model.MainImage"*@ alt="product thumb" />
+                                </div>
+
+                            </div>
+                            <div class="pro-nav slick-row-5">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="product-details-des">
+                                <h3 id="name" class="pro-det-title"></h3>
+                                <div class="pro-review">
+                                    <span><a href="#">Review(s)</a></span>
+                                </div>
+                                <div class="price-box">
+                                    <span id="product_price" class="regular-price"></span>
+                                    <span class="old-price"><del id="dist_price"></del></span>
+                                </div>
+
+                                <p id="description"></p>
+                                <form method="get" id="basketform" asp-controller="Product" asp-action="AddBasket">
+                                    <input type="hidden" id="productId" />
+                                    <div class="form-group">
+                                        <label>Sizes</label>
+
+                                        <select class="form-control" name="sizeId" id="sizeId">
+                                        </select>
+                                        @*<span class="text-danger" asp-validation-for="SizeIds"></span>*@
+                                    </div>
+                                    <div class="quantity-cart-box d-flex align-items-center mb-20">
+                                        <div class="quantity">
+                                            <div class="pro-qty" id="pro_qty"><input type="text" id="productcount" name="count" value="1"></div>
+                                        </div>
+                                        <button id="addbasketbtn" type="button" class="btn btn-warning">Add To Cart</button>
+                                        <input type="hidden" id="pro_count">
+                                    </div>
+                                </form>
+                                <div class="availability mb-20 d-flex" style="margin-right: 15px; margin-top:15px;">
+                                    <h5 class="cat-title">Availability:</h5>
+                                    <span>In Stock</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
     </div>
 </div>
+
+
+
+@section Script {
+    @*<script src="./js/custom.js"></script>*@
+
+    <script>
+        $(document).on("click", ".productdetail", function (e) {
+            e.preventDefault()
+
+            let url = $(this).attr("href");
+            document.getElementById('productId').value = 0;
+            document.getElementById('productcount').value = 1;
+            document.getElementById('mainImage').src = '';
+            var element = document.createElement('option');
+            var sizeIdSelect = $('#sizeId');
+            element.value = 0;
+            element.innerHTML = 'Choose..';
+            sizeIdSelect.html(element)
+
+            var qty_div = $('#pro_qty');
+
+            var dec_element = document.createElement('span');
+            dec_element.classList.add('dec');
+            dec_element.classList.add('qtybtn');
+            dec_element.innerHTML = '-';
+
+            var productcount = document.createElement('input');
+            productcount.type = 'text';
+            productcount.id = 'productcount';
+            productcount.name = 'count';
+            productcount.value = '1';
+
+            var inc_element = document.createElement('span');
+            inc_element.classList.add('inc');
+            inc_element.classList.add('qtybtn');
+            inc_element.innerHTML = '+';
+
+            qty_div.html('');
+            qty_div.append(dec_element)
+            qty_div.append(productcount)
+            qty_div.append(inc_element)
+
+
+            $.ajax({
+                method: 'GET',
+                url: url
+            }).then(function (res) {
+                document.getElementById('productId').value = res.id;
+                document.getElementById('mainImage').src = '/assets/images/product/' + res.mainImage;
+                document.getElementById('name').innerHTML = res.name;
+                document.getElementById('description').innerHTML = res.description;
+                document.getElementById('product_price').innerHTML = '$' + res.price;
+                document.getElementById('dist_price').innerHTML = '$' + res.discountPrice;
+
+                for (let i = 0; i < res.productSizes.length; i++) {
+                    var added = document.createElement('option');
+                    var sizeSelect = $('#sizeId');
+                    added.value = res.productSizes[i].size.id;
+                    added.innerHTML = res.productSizes[i].size.name;
+                    sizeSelect.append(added);
+                }
+            })
+
+
+            $("#quick_view").modal("show")
+            $('.btn-close').on('click', function (e) {
+                e.preventDefault();
+                $("#quick_view").modal("hide")
+
+            })
+
+
+            $('.product-view-mode a').on('click', function (e) {
+                e.preventDefault();
+                var shopProductWrap = $('.shop-product-wrap');
+                var viewMode = $(this).data('target');
+                $('.product-view-mode a').removeClass('active');
+                $(this).addClass('active');
+                shopProductWrap.removeClass('grid-view list-view').addClass(viewMode);
+            })
+
+            // quantity change js
+
+            $('.qtybtn').on('click', function () {
+                var $button = $(this);
+                var oldValue = $button.parent().find('input').val();
+                if ($button.hasClass('inc')) {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    // Don't allow decrementing below zero
+                    if (oldValue > 0) {
+                        var newVal = parseFloat(oldValue) - 1;
+                    } else {
+                        newVal = 0;
+                    }
+                }
+                $button.parent().find('input').val(newVal);
+                document.getElementById('pro_count').value = newVal;
+            });
+
+            document.getElementById('pro_count').value = 1;
+        })
+
+        $(document).on("click", "#addbasketbtn", function (e) {
+            e.preventDefault()
+            let url = $("#basketform").attr("action")
+            let count = document.getElementById('pro_count').value;
+            let id = document.getElementById('productId').value;
+            if (count == null || count == undefined || count == 0) {
+                alert('Increase product count');
+            }
+            let sizeId = $('#sizeId').val();
+
+            if (sizeId == null || sizeId == undefined || sizeId == 0) {
+                alert('Select a size!');
+                return;
+            }
+
+            url = url + "?count=" + count + '&&sizeId=' + sizeId + '&&id=' + id;
+            fetch(url).then(response => {
+                return response.text();
+            }).then(data => {
+                $(".minicart-inner-content").html(data);
+
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "1000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.success("Əlavə olundu!");
+
+            })
+            Swal.fire("Our First Alert", "With some body text and success icon!", "success");
+        })
+    </script>
+
+}

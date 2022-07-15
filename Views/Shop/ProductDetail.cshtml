@@ -1,0 +1,391 @@
+﻿@model HomeVM
+@{ ViewData["Title"] = "ProductDetail";
+    int i = 0; }
+<link href="~/css/product-detail.css" rel="stylesheet" />
+<style>
+  
+</style>
+
+
+
+
+
+
+<section id="main-content">
+    <div class="container">
+        <section id="detail-breadcrumb" class="mb-4">
+            <div class="containerr">
+                <a href="">Home</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="">Shop</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="">Detail</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="" class="productData" data-id="@Model.Product.Id">@Model.Product.Name</a>
+            </div>
+        </section>
+        <section id="product-detail-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="product-detail-box" id="zoomC">
+                            <div id="product-detail-image zoomC">
+                                <img src="/assets/images/product/@Model.Product.MainImage"
+                                     style="height: 100%; width: 100%"
+                                     alt=""
+                                     id="zoomC" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 all-detail-box" style="margin-top: 50px">
+                        <div class="detail-category d-flex justify-content-between">
+                            <span>@Model.Product.Category.Name</span>
+                            <div class="detail-off"><span>-20% off</span></div>
+                        </div>
+
+                        <h2>@Model.Product.Name</h2>
+                        <div class="dis-price d-flex justify-content-between">
+                            <span id="d-price-detail">
+                                <del>@Model.Product.DiscountPrice$</del> <span id="price-detail">@Model.Product.Price$</span>
+                            </span>
+
+                            <div class="icon-star">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="detail-info">
+                            <li>@Model.Product.Description</li>
+                        </div>
+
+                        <hr />
+                        @*  <div class="down-detail d-flex" style="margin-bottom: 30px">
+                                                <div class="quantity d-flex justify-content-evenly">
+
+                                <div class="pro-qty" id="pro_qty"><input type="text" id="productcount" name="count" value="1"></div>
+                            </div>
+                            <div class="col-lg-5 add-to-cart-detail">
+                                <button class="btn-cart-detail">
+                                    <span id="add-to-cart-icon">
+                                        <i class="fa-solid fa-basket-shopping"></i>
+                                    </span>
+                                    <span id="add-to-cart-span">Add to cart</span>
+                                </button>
+                            </div>*@
+                        <form method="get" id="basketform" asp-controller="Product" asp-action="AddBasket">
+                            <div class="form-group">
+                                <label>Size</label>
+                                <select  class="form-control" id="sizeId" asp-items="@new SelectList(ViewBag.Sizes, nameof(Size.Id), nameof(Size.Name))">
+                                    <option value="" selected>Choose...</option>
+                                </select>
+                                @*<span class="text-danger" asp-validation-for="CategoryId"></span>*@
+                            </div>
+
+                            <input type="hidden" id="productId" value="@Model.Product.Id" />
+                            <div class="quantity-cart-box d-flex align-items-center mb-20">
+                                <div class="quantityy">
+                                    <div class="pro-qty" id="pro_qty"><input type="number" id="productcount" name="count" value="1"></div>
+                                </div>
+                                <button id="addbasketbtn" type="button" class="btn btn-warning">Add To Cart</button>
+                                <input type="hidden" id="pro_count">
+                            </div>
+                            @*</div>*@
+                        </form>
+                        <div class="col-lg-6 below-info-box">
+                            <h2>AVAILABILITY: <span>In stock</span></h2>
+                            <h2>CATEGORIES: <span>@Model.Product.Category.Name</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="reviews">
+            <div class="containerr">
+                <h2>REVIEWS</h2>
+                <div class="content">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-6">
+                            <div class="reviews">
+                                <span>Reviews  @Model.Reviews.Count()</span>
+                                @if (@Model.Reviews.Count() == 0)
+                                {
+                    <p>There are no reviews yet.</p> }
+
+                else
+                {
+    @foreach (var item in Model.Reviews)
+    {
+<div class="product-reviews">
+
+    <div class="reviews">
+        <div class="author">
+            <span>Author: @item.Name</span>
+        </div>
+        <div class="time">
+            <span>Date: @item.CreatedAt.Value.ToString("MM/dd/yyyy")</span>
+        </div>
+        <div class="texxt">
+            <p>
+                Comment: @item.Title
+            </p>
+        </div>
+        <ul>
+            @{ int yy;
+                for (yy = 0; yy < 5; yy++)
+                {
+                    if (yy < item.Rate)
+                    {
+<li style="color: #ffc107"><i class="fa-solid fa-star"></i></li>
+ }
+else
+{
+<li style="color:gray"><i class="fa-solid fa-star"></i></li>
+ }
+} }
+        </ul>
+    </div>
+
+</div>
+                    <hr />}}
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="write">
+                                <span>Write review</span>
+                                
+                                <div class="rate d-flex">
+                                    <label for="" class="rating">Your Rating: </label>
+                                    <ul>
+                                        @{ int ix;
+                                            for (ix = 1; ix < 6; ix++)
+                                            {
+                                <li data-id=@ix class="starHolder"><i class="fa-solid fa-star ratingStar"></i></li>
+ } }
+
+                                        @* <li>
+                                            <a href="">
+                                            <i class="fa-solid fa-star"></i></i>
+                                            </a>
+                                            </li> *@
+
+                                    </ul>
+                                </div>
+                                <form action="" class="d-flex">
+                                    <input type="text" class=" name reviewerName" placeholder="Name" required>
+                                    <input type="email" class="email reviewerEmail" placeholder="Email" required>
+                                    <div class="review">
+                                        <input placeholder="Your review" class="reviewContent">
+                                    </div>
+
+                                    <button type="submit" class="submitReview" required>
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</section>
+
+@section Script {
+    <script>
+        var qty_div = $('#pro_qty');
+
+        var dec_element = document.createElement('span');
+        dec_element.classList.add('dec');
+        dec_element.classList.add('qtybtn');
+        dec_element.innerHTML = '-';
+
+        var productcount = document.createElement('input');
+        productcount.type = 'text';
+        productcount.id = 'productcount';
+        productcount.name = 'count';
+        productcount.value = '1';
+
+        var inc_element = document.createElement('span');
+        inc_element.classList.add('inc');
+        inc_element.classList.add('qtybtn');
+        inc_element.innerHTML = '+';
+
+        qty_div.html('');
+        qty_div.append(dec_element)
+        qty_div.append(productcount)
+        qty_div.append(inc_element)
+
+
+
+        // quantity change js
+
+        $('.qtybtn').on('click', function () {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+            $button.parent().find('input').val(newVal);
+            document.getElementById('pro_count').value = newVal;
+        });
+
+        document.getElementById('pro_count').value = 1;
+
+
+
+
+        $(document).on("click", "#addbasketbtn", function (e) {
+            e.preventDefault()
+            let url = $("#basketform").attr("action")
+            let count = document.getElementById('pro_count').value;
+            let id = document.getElementById('productId').value;
+            if (count == null || count == undefined || count == 0) {
+                alert('Increase product count');
+            }
+            let sizeId = $('#sizeId').val();
+
+            if (sizeId == null || sizeId == undefined || sizeId == 0) {
+                alert('Select a size!');
+                return;
+            }
+
+            url = url + "?count=" + count + '&&sizeId=' + sizeId + '&&id=' + id;
+            fetch(url).then(response => {
+                return response.text();
+            }).then(data => {
+                $(".minicart-inner-content").html(data);
+
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "1000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.success("Əlavə olundu!");
+
+            })
+            Swal.fire("Our First Alert", "With some body text and success icon!", "success");
+        })
+
+
+
+
+
+
+
+
+
+
+    let stars = $(".starHolder")
+
+    stars.mouseenter((e) => {
+        currentStar = e.currentTarget.getAttribute('data-id')
+        console.log(Array.from(stars.slice(0, currentStar)))
+        Array.from(stars.slice(0, currentStar)).forEach(x => {
+            x.classList.add("starred")
+            @* x.firstChild.eq(1).css({"color":"#ffc107"}) *@
+        })
+
+    })
+
+    stars.click((e) => {
+        Array.from(stars).forEach(x => {
+            x.classList.remove("selected")
+            x.classList.remove("starred")
+
+        })
+        currentStar = e.currentTarget.getAttribute('data-id')
+        console.log(Array.from(stars.slice(0, currentStar)))
+        Array.from(stars.slice(0, currentStar)).forEach(x => {
+            x.classList.add("selected")
+            @* x.firstChild.eq(1).css({"color":"#ffc107"}) *@
+        })
+    })
+
+    stars.mouseleave((e) => {
+        console.log(stars.hasClass("selected"))
+        if (!stars.hasClass("selected")) {
+            Array.from(stars).forEach(x => {
+                x.classList.remove("starred")
+
+            })
+        }
+    })
+
+        $(".submitReview").click((e) => {
+            e.preventDefault();
+
+            var rate = $(".selected").length
+            var message = $(".reviewContent").val();
+            var email = $(".reviewerEmail").val();
+            var name = $(".reviewerName").val();
+            if (message.trim() == "") {
+                alert('Message field cannot be blank')
+                return
+            }
+            if (email.trim() == "") {
+                alert('Email field cannot be blank')
+                return
+            }
+            if (name.trim() == "") {
+                alert('Name field cannot be blank')
+                return
+            }
+            var review = {
+                productId: $(".productData").data("id"),
+                rate: rate,
+                message: message,
+                email: email,
+                name: name
+            }
+
+            $.ajax({
+                url: "/Shop/Review?review=" + JSON.stringify(review),
+                type: "POST",
+                success: function (result) {
+                    console.log(result)
+                    @* $(".shopProductRowHolder").empty();
+                    $(".shopProductRowHolder").append(result); *@
+                    $(".reviews").empty();
+                    $(".reviews").append(result)
+                }
+            });
+
+            console.log(review)
+
+        })
+
+    </script>
+
+}
+

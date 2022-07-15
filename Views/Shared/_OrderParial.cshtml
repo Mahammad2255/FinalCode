@@ -1,12 +1,15 @@
 ﻿@model OrderVM
 <form id="orderForm" method="post">
+    @*<div class="text-danger" asp-validation-summary="ModelOnly"></div>*@
     <div class="billing-address mt-30">
         <h4 class="allup-title">Billing Address</h4>
+        <input type="hidden" name="orderTotal" value="@ViewBag.Total.ToString("0.00")" />
         <div class="row">
             <div class="col-md-6">
                 <div class="single-form">
                     <label asp-for="FullName"></label>
                     <input asp-for="FullName" class="form-control" placeholder="Full Name">
+                    <span class="text-danger" asp-validation-for="FullName"></span>
                 </div>
             </div>
             <div class="col-md-6">
@@ -18,19 +21,19 @@
             <div class="col-md-12">
                 <div class="single-form">
                     <label asp-for="Address"></label>
-                    <input asp-for="Address"class="form-control" placeholder="Address">
+                    <input asp-for="Address" class="form-control" placeholder="Address">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="single-form">
                     <label asp-for="Country"></label>
-                    <input asp-for="Country"  class="form-control" placeholder="Country">
+                    <input asp-for="Country" class="form-control" placeholder="Country">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="single-form">
                     <label asp-for="City"></label>
-                    <input asp-for="City"class="form-control" placeholder="Town/City">
+                    <input asp-for="City" class="form-control" placeholder="Town/City">
                 </div>
             </div>
             <div class="col-md-6">

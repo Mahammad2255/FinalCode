@@ -11,7 +11,7 @@
             <div class="col-lg-10">
                 <div class="login-register-wrapper mt-30">
                     <h4 class="allup-title">Creat New Account</h4>
-                    <p class="mt-10">Already have an account? <a href="login.html">Log in instead!</a></p>
+                    <p class="mt-10">Already have an account? <a asp-controller="Account" asp-action="Login">Log in instead!</a></p>
 
                     @await Html.PartialAsync("_RegisterPartial", Model)
                 </div>
